@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
       logger.debug "\n path_params_controller = #{request.path_parameters[:controller]}\n"
       if request.path_parameters[:controller].include?('admin')
         logger.debug "\n path_params2 = #{request.path_parameters[:controller]}"
-        unless User.find_by_id(session[:user_id]) or ( User.count.zero? and (request.path_parameters[:controller] == 'users' and (request.path_parameters[:action] == 'new' or request.path_parameters[:action] == 'create')))
+        unless User.find_by_id(session[:user_id]) or ( User.count.zero? and (request.path_parameters[:controller].include?('users') and (request.path_parameters[:action] == 'new' or request.path_parameters[:action] == 'create')))
           session[:original_uri] = request.request_uri
           flash[:notice] = "Please log in"
           redirect_to :controller => 'admin', :action => 'login'
