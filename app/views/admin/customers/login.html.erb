@@ -1,0 +1,28 @@
+<div class="fennyfund-form">
+	<% form_tag do %>
+		<fieldset> 
+			<legend>Please Log In</legend>
+			
+			<div> 
+				Email:
+				<%= text_field_tag :email, params[:email] %>
+			</div>
+      Do you have a password?
+      <div>
+        <%= radio_button_tag 'new_cust', 'true', false %>
+				No, I am a new customer
+			</div>
+			
+			<div> 
+				<%= radio_button_tag 'new_cust', 'false', true %>
+        Yes, I have a Password:
+				<%= password_field_tag :password, params[:password] %>
+			</div>
+			
+			<div>
+				<%= submit_tag "Login" %>
+			</div>
+			
+		</fieldset>
+	<% end %>
+</div>

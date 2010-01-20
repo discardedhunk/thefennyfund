@@ -1,0 +1,34 @@
+<p>
+  <b>Title:</b>
+  <%=h @product.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @product.description %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @product.category %>
+</p>
+<% if @product.category == "music" %>
+<p>
+  <b>Dl url:</b>
+  <%=link_to @product.music_file_name, @product.music.url %>
+</p>
+<p>
+  Priv url: <%= link_to @product.music_file_name, @product.music.get_priv_url %>
+</p>
+
+<% end %>
+
+<p>
+  <b>Price:</b>
+  <%=h @product.price %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_admin_product_path(@product) %> |
+<%= link_to 'Back', admin_products_path %>

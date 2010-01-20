@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+						"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html> 
+<head>
+	<title>The Fenny Fund Online Store</title>
+	<%= stylesheet_link_tag "thefennyfund", :media => "all" %>
+	<%= javascript_include_tag :defaults %>
+</head> 
+<body id="store">
+	<div id="banner">
+		<%= image_tag("ff_logo2.jpg") %>
+    <div id="text">
+      <%= @page_title || "The Fenny Fund Store" %>
+    </div>
+	</div> 
+	<div id="columns">
+		<div id="side">
+			<% if @cart %>
+				<% hidden_div_if(@cart.items.empty?, :id => "cart") do %> 
+					<%= render(:partial => "cart", :object => @cart) %>
+				<% end %>
+			<% end %>
+			<%= link_to 'Store Home', root_url %><br />
+      <%= link_to 'Register', new_customer_url %><br />
+			<%= link_to 'Customer Login',	login_url %><br />
+			<a href="http://www..../news">News</a><br /> 
+			<a href="http://www..../contact">Contact</a><br />
+			
+			<% if session[:user_id] %>
+				<br />
+				<%= link_to 'Orders',	admin_orders_path %><br />
+				<%= link_to 'Products', admin_products_path %><br />
+				<%= link_to 'Users',	admin_users_path	%><br />
+				<br />
+				<%= link_to 'Logout', '/admin/logout' %>
+			<% end %>
+      <% if session[:customer_id] %>
+				<br />
+				<%= link_to 'Orders',	customer_orders_url(session[:customer_id]) %><br />
+        <%= link_to 'Profile',	customer_url(session[:customer_id]) %><br />
+				<br />
+        <%= link_to 'Logout',	logout_url %><br />
+				
+			<% end %>
+		</div> 
+		<div id="main">
+      <% if session[:customer_name] %>
+      <h3 id="cust-name">Hello, <%=h session[:customer_name]%>!</h3>
+      <% end %>
+			<% if flash[:notice] -%> 
+				<div id="notice"><%= flash[:notice] %></div>
+			<% end -%>
+			<%= yield :layout %>
+		</div> 
+	</div>
+</body> 
+</html>

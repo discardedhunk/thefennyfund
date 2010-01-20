@@ -1,0 +1,41 @@
+<div class="fennyfund-form">
+
+<% form_for(@customer) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+	<legend>New Customer Details</legend>
+
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field(:email, {:value => @customer_email} ) %>
+  </div>
+  <div>
+    <%= f.label :address %>
+    <%= f.text_area :address, :rows => 3, :cols => 40 %>
+  </div>
+
+  <div>
+		<%= f.label :customer_password, 'Password' %>:
+		<%= f.password_field :password, :size => 40 %>
+	</div>
+
+	<div>
+		<%= f.label :customer_password_confirmation, 'Confirm' %>:
+		<%= f.password_field :password_confirmation, :size => 40 %>
+	</div>
+
+  <div>
+    <%= f.submit "Create" %>
+  </div>
+
+  </fieldset>
+<% end %>
+</div>

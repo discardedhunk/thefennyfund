@@ -1,0 +1,21 @@
+<h1>Your orders:</h1>
+
+<table id="general-table">
+  <tr>
+    <th>Number</th>
+    <th>Date</th>
+    <th>Pay Type</th>
+  </tr>
+
+<% for order in @orders %>
+  <tr>
+    <td><%= link_to order.id, customer_order_path({:id => order} )%></td>
+    <td><%=h order.created_at %></td>
+    <td><%=h order.pay_type %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

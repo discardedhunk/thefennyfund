@@ -1,0 +1,277 @@
+/* Global styles */
+
+h1 {
+        font:  150% sans-serif;
+        color: #226;
+        border-bottom: 3px dotted #77d;
+}
+
+#cust-name {
+        font:  110% sans-serif;
+        font-syle: bold;
+        color: #226;
+        border-bottom: 3px dotted #77d;
+}
+
+/* Styles for products/index */
+
+#product-list table {
+        border-collapse: collapse;
+}
+
+#product-list table tr td {
+        padding: 5px;
+        vertical-align: top;
+}
+
+#product-list .list-image {
+  width:        60px;
+  height:       70px;
+}
+
+#product-list .list-description {
+  width:        60%;
+}
+
+#product-list .list-description dl {
+        margin: 0;
+}
+
+#product-list .list-description dt {
+	color:        #244;
+	font-weight:  bold;
+	font-size:    larger;
+}
+
+#product-list .list-description dd {
+        margin: 0;
+}
+
+#product-list .list-actions {
+  font-size:    x-small;
+  text-align:   right;
+  padding-left: 1em;
+}
+
+#product-list .list-line-even {
+  background:   #e0f8f8;
+}
+
+#product-list .list-line-odd {
+  background:   #f8b0f8;
+}
+
+/* An entry in the store catalog */
+
+#store  .entry {
+  overflow: hidden;
+  margin-top: 1em;
+  border-bottom: 1px dotted #77d;
+}
+
+#store  .title {
+  font-size: 120%;
+  font-family: sans-serif;
+}
+
+#store .entry .img {
+  width: 100px;
+  float: left;
+  text-decoration: none;
+  border: 0;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+
+#store .entry h3 {
+ margin-top: 0;
+ margin-bottom: 2px;
+ color: #227;
+}
+
+#store .entry p {
+ margin-top: 0.5em; 
+ margin-bottom: 0.8em; 
+}
+
+#store .entry .price-line {
+ clear: both;
+}
+
+#store .entry .add-to-cart {
+  position: relative;
+}
+
+#store .entry  .price {
+  color: #44a;
+  font-weight: bold;
+  margin-right: 2em; 
+}
+
+#store .entry form, #store .entry form div {
+	display: inline;
+}
+
+/* Styles for the cart in the sidebar */
+#cart, #cart table { 
+	font-size: 16px;
+	color: black;
+}
+#cart table { 
+	border-top:	1px dotted #595; 
+	border-bottom: 1px dotted #595; 
+	margin-bottom: 10px;
+}
+#cart table a{
+    font-size: 14px;
+}
+#notice { 
+	border: 2px solid red; 
+	padding: 1em; 
+	margin-bottom: 2em; 
+	background-color: #f0f0f0; 
+	font: bold smaller sans-serif;
+}
+
+.cart-title {
+	font: 120% bold;
+}
+
+.item-price, .total-line {
+	text-align: right;
+}
+
+.total-line, .total-cell {
+	font-weight: bold;
+	border-top: 1px solid #595;
+}
+
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: #EEFFEE;
+  display: inline;
+}
+
+.fieldWithErrors * {
+  background-color: red;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* Styles for main page */
+#banner { 
+	/*background-color: #E4D4AE;*/
+  background-color: #141;
+
+	padding-top: 1px;
+	padding-bottom: 70px;
+	/*border-bottom: 1px solid;*/
+}
+#text {
+  padding-top: 40px;
+  font: small-caps 40px/40px "Times New Roman", serif;
+	color: #E4D4AE;
+  text-align: center;
+}
+#banner img { 
+	float: left;
+  width: 20em;
+  height: 150px;
+}
+#columns { 
+	background: #E4D4AE;
+}
+#main { 
+	margin-left: 13em; 
+	padding-top: 2ex;
+	padding-left: 2em; 
+	background: white;
+}
+#side { 
+	float: left; 
+	padding-top: 4ex;
+	padding-left: 1em;
+	padding-bottom: 1em; 
+	width: 12em; 
+	/*background: #141;
+	color: #bfb;*/
+  background: #E4D4AE;
+  color: #E4D4AE;
+}
+#side a { 
+	color: black;
+	font-size:large;
+}
+/* Styles for order form */
+
+.fennyfund-form fieldset {
+	background: #efe;
+}
+
+.fennyfund-form legend {
+	color: #dfd; 
+	background: #141; 
+	font-family: sans-serif; 
+	padding: 0.2em 1em;
+}
+
+.fennyfund-form label {
+	width: 5em; 
+	float: left; 
+	text-align: right; 
+	padding-top: 0.2em; 
+	margin-right: 0.1em; 
+	display: block;
+}
+
+.fennyfund-form select, .fennyfund-form textarea, .fennyfund-form input {
+	margin-left: 0.5em;
+}
+
+.fennyfund-form .submit {
+	margin-left: 4em;
+}
+
+.fennyfund-form .cancel {
+	margin-left: 2em
+}
+
+.fennyfund-form div {
+	margin: 0.5em 0;
+}
+
+#general-table {
+    text-align: left;
+    width: 400px
+}

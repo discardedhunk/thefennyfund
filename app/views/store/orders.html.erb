@@ -1,0 +1,30 @@
+
+
+<p>
+  <b>Pay type:</b>
+  <%=h @order.pay_type %>
+</p>
+
+<table class="order_summary" width="300" >
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Order</th>
+      <th>Quantity</th>
+      <th>Total price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.line_items.each do |line_item| %>
+    <tr>
+      <td><%=h line_item.product_id %></td>
+      <td><%=h line_item.order_id %></td>
+      <td><%=h line_item.quantity %></td>
+      <td><%=h line_item.total_price %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
