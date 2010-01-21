@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
       format.xml  { render :xml => @order }
     end
   end
-
+=begin
   # GET /orders/new
   # GET /orders/new.xml
   def new
@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
 
   # POST /orders
   # POST /orders.xml
+
   def create
     @order = Order.new(params[:order])
     @order.customer_id = session[:customer_id]
@@ -86,4 +87,6 @@ class OrdersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
+
 end

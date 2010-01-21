@@ -2,12 +2,15 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
+=begin
     @products = Product.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
     end
+=end
+    redirect_to(root_url)
   end
 
   # GET /products/1
@@ -25,12 +28,15 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
+=begin
     @product = Product.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }
     end
+=end
+    redirect_to(root_url)
   end
 
   # GET /products/1/edit
@@ -41,6 +47,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
+=begin
     @product = Product.new(params[:product])
 
     respond_to do |format|
@@ -53,11 +60,15 @@ class ProductsController < ApplicationController
         format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
       end
     end
+=end
+    redirect_to(root_url)
+
   end
 
   # PUT /products/1
   # PUT /products/1.xml
   def update
+=begin
     @product = Product.find(params[:id])
 
     respond_to do |format|
@@ -70,11 +81,14 @@ class ProductsController < ApplicationController
         format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
       end
     end
+=end
+    redirect_to(root_url)
   end
 
   # DELETE /products/1
   # DELETE /products/1.xml
   def destroy
+=begin
     @product = Product.find(params[:id])
     @product.destroy
 
@@ -82,5 +96,9 @@ class ProductsController < ApplicationController
       format.html { redirect_to(products_url) }
       format.xml  { head :ok }
     end
+=end
+    redirect_to(root_url)
   end
+
+    
 end

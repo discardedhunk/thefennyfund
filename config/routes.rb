@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.new_cust '/customers/new', :controller => 'customers', :action => 'new'
 
   #map.resources :orders, :path_prefix => '/store', :has_many => :line_items
-  map.resources :customers, :path_prefix => '/store', :has_many => :orders 
+  map.resources :customers, :except => [:destroy], :path_prefix => '/store', :has_many => :orders
 
   #map.resources :users
 
@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
 
   #map.resources :orders
 
-  map.resources :products, :path_prefix => '/store'
+  map.resources :products, :path_prefix => '/store', :only => [:show]
 
   map.namespace :admin do |admin|
     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
