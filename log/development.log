@@ -49482,3 +49482,25 @@ Rendered store/_cart (2.6ms)
 
 prev_uri= /store/
 Completed in 31ms (View: 21, DB: 4) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-01-21 09:59:41) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlMzk5NTdkMmNhZWVmYjhlYzcyMjlmOGM1YWI3ZWVkNDEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--22b7642934ab88eae31e0b3500359efc13fda0ea
+  [4;36;1mProduct Load (1.4ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Rendered store/_cart (1.4ms)
+
+prev_uri= /store/
+Completed in 48ms (View: 39, DB: 5) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-01-21 10:01:27) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlMzk5NTdkMmNhZWVmYjhlYzcyMjlmOGM1YWI3ZWVkNDEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--22b7642934ab88eae31e0b3500359efc13fda0ea
+  [4;35;1mProduct Load (0.9ms)[0m   [0mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Rendered store/_cart (1.3ms)
+
+prev_uri= /store/
+Completed in 27ms (View: 19, DB: 5) | 200 OK [http://localhost/store/]

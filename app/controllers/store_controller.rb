@@ -1,6 +1,6 @@
 class StoreController < ApplicationController
   
-  before_filter :find_cart, :except => :empty_cart
+  before_filter :require_ssl, :find_cart, :except => :empty_cart
   
   def index()
     @current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
@@ -113,6 +113,10 @@ class StoreController < ApplicationController
       else
         render :action => 'checkout'
       end 
+    end
+
+    def require_ssl
+      redirect_to :protocol => "https://" unless (request.ssl? or local_request?)
     end
 
 end
