@@ -22,7 +22,7 @@
     <td><%=h customer.salt %></td>
     <td><%= link_to 'Show', customer %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', admin_customer_path(customer), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

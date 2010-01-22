@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20100119154802
+#
+# Table name: orders
+#
+#  id          :integer         not null, primary key
+#  pay_type    :string(10)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  customer_id :integer         not null
+#
+
 class Order < ActiveRecord::Base
 
   has_many :line_items
@@ -5,9 +17,7 @@ class Order < ActiveRecord::Base
 
   PAYMENT_TYPES = [
     # Displayed         stored in db
-    [ "Check",          "check"],
-    [ "Credit card",    "cc"],
-    [ "Purchase order", "po" ]
+    [ "PayPal", "paypal" ]
   ]
 
   validates_presence_of  :pay_type

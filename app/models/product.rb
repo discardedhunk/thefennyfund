@@ -1,3 +1,25 @@
+# == Schema Information
+# Schema version: 20100119154802
+#
+# Table name: products
+#
+#  id                 :integer         not null, primary key
+#  title              :string(255)
+#  description        :text
+#  image_url          :string(255)
+#  dl_url             :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  price              :decimal(8, 2)   default(0.0)
+#  category           :string(255)
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  music_file_name    :string(255)
+#  music_content_type :string(255)
+#  music_file_size    :integer
+#
+
 class Product < ActiveRecord::Base
 
   has_many :orders, :through => :line_items
@@ -7,13 +29,13 @@ class Product < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :path => ":attachment/:id/:filename",
-                    :bucket => 'thefennyfund_images'
+                    :bucket => 'thefennyfund_image_files2'
 
   has_attached_file :music,
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :path => ":attachment/:id/:filename",
-                    :bucket => 'thefennyfund_music_files',
+                    :bucket => 'thefennyfund_music_files2',
                     :s3_permissions => 'private'
 
   def self.find_products_for_sale
