@@ -7,8 +7,6 @@
     <th>Email</th>
     <th>Login</th>
     <th>Address</th>
-    <th>Hashed password</th>
-    <th>Salt</th>
   </tr>
 
 <% for customer in @customers %>
@@ -18,8 +16,6 @@
     <td><%=h customer.email %></td>
     <td><%=h customer.login %></td>
     <td><%=h customer.address %></td>
-    <td><%=h customer.hashed_password %></td>
-    <td><%=h customer.salt %></td>
     <td><%= link_to 'Show', customer %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
     <td><%= link_to 'Destroy', admin_customer_path(customer), :confirm => 'Are you sure?', :method => :delete %></td>

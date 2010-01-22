@@ -2,11 +2,13 @@
 
 <table>
   <tr>
+    <th>CustomerID</th>
     <th>Pay type</th>
   </tr>
 
 <% for order in @orders %>
   <tr>
+    <td><%= link_to order.customer_id, admin_customer_path(order.customer_id) %></td>
     <td><%=h order.pay_type %></td>
     <td><%= link_to 'Show', admin_order_path(order) %></td>
     <td><%= link_to 'Edit', edit_admin_order_path(order) %></td>

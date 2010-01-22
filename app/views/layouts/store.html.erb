@@ -20,22 +20,26 @@
 					<%= render(:partial => "cart", :object => @cart) %>
 				<% end %>
 			<% end %>
+			<a href="http://thefennyfund.com/">The Fenny Fund Home</a><br /><br />
 			<%= link_to 'Store Home', root_url %><br />
       <%= link_to 'Register', new_customer_url %><br />
 			<%= link_to 'Customer Login',	login_url %><br />
-      <br />
-			<a href="http://thefennyfund.com/">The Fenny Fund Home</a><br />
+     
 			
 			<% if session[:user_id] %>
 				<br />
+        Admin Options:<br />
 				<%= link_to 'Orders',	admin_orders_path %><br />
 				<%= link_to 'Products', admin_products_path %><br />
-				<%= link_to 'Users',	admin_users_path	%><br />
+        <%= link_to 'Customers',	admin_customers_path	%><br />
+				<%= link_to 'Admin Users',	admin_users_path	%><br />
 				<br />
 				<%= link_to 'Logout', '/admin/logout' %>
+        <br />
 			<% end %>
       <% if session[:customer_id] %>
 				<br />
+        Cusomter Options:<br />
 				<%= link_to 'Orders',	customer_orders_url(session[:customer_id]) %><br />
         <%= link_to 'Profile',	customer_url(session[:customer_id]) %><br />
 				<br />
