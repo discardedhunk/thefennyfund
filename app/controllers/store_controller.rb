@@ -60,11 +60,14 @@ class StoreController < ApplicationController
     end
 
     if params[:order]
+      logger.debug("\nSAVING??\n")
+      logger.debug("ORDER_PARAMS: #{params[:order].to_s}")
       save_order
     else
       if @cart.items.empty?
         redirect_to_index("Your cart is empty")
       else
+        logger.debug("\n NEW ORDER?\n")
         @order = Order.new
       end
     end 
