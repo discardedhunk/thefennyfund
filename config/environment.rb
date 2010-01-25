@@ -77,7 +77,15 @@ Rails::Initializer.run do |config|
 
   config.action_mailer.raise_delivery_errors = true
 
-  #config.active_record.observers = :customer_observer
+  config.active_record.observers = :customer_observer
 
-  
 end
+
+ActionMailer::Base.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => '25',
+    :domain         => "thefennyfund.heroku.com",
+    :authentication => :plain,
+    :user_name      => "jayl5150@gmail.com",
+    :password       => "jou812\#$"
+  }
