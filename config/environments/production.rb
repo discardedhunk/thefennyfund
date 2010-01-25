@@ -22,3 +22,12 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+ActionMailer::Base.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => '25',
+    :domain         => "thefennyfund.heroku.com",
+    :authentication => :plain,
+    :user_name      => "jayl5150@gmail.com",
+    :password       => "jou812\#$"
+  }
