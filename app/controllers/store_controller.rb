@@ -1,7 +1,15 @@
+require 'net/http'
+require 'net/https'
+require 'uri'
+
 class StoreController < ApplicationController
   
   before_filter :require_ssl, :find_cart, :except => :empty_cart
-  
+
+  ID_TOKEN = "Cb93BAgmMAw3tuwT3N-iyXiQwX7dSxSptsC_N5Iv_sbAci53_oPmECIeU2u"
+  PAYPAL_URL = 'www.paypal.com'
+  PAYPAL_PATH = '/cgi-bin/webscr'
+
   def index()
     @current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
     @products = Product.find_products_for_sale
@@ -73,11 +81,47 @@ class StoreController < ApplicationController
     end 
   end
   
-  
+  def paypal_verify
+    tx_id = params[:tx]
+    puts "\ntx_id=#{tx_id}"
+=begin
+    url = URI.parse(PAYPAL_URL)
+    req = Net::HTTP::Post.new(url.path)
+    
+    req.set_form_data({'cmd'=>'_notify-synch','tx'=>tx_id,'at'=>ID_TOKEN}, '&')
+    res = Net::HTTP.new(url.host, 443)
+    res.use_ssl=(true)
+    res.start {|http| http.request(req) }
+    case res
+    when Net::HTTPSuccess, Net::HTTPRedirection
+      puts "\nRES= #{res.body}"
+    else
+      puts "\nERROR RES= #{res.error}"
+      res.error!
+    end
+=end
+
+    #res = Net::HTTP.post_form(URI.parse(PAYPAL_URL),
+                                        #{'cmd'=>'_notify-synch','tx'=>tx_id,'at'=>ID_TOKEN})
+    #puts res.body
+
+    http = Net::HTTP.new(PAYPAL_URL, 443)
+    http.use_ssl = true
+
+    data = "cmd=_notify-synch&tx=#{tx_id}&at=#{ID_TOKEN}"
+    resp, data = http.post(PAYPAL_PATH, data)
+    puts "\nCode = #{resp.code}"
+    puts "\nMessage = #{resp.message}"
+    resp.each {|key, val| puts key + ' = ' + val}
+    puts data
+
+
+  end
   
   def cancel_order
     redirect_to_index("Your order has been cancelled")
   end
+
   
   protected
     def authorize

@@ -1,0 +1,26 @@
+<div class="fennyfund-form">
+  
+	<%= error_messages_for 'order' %>
+
+	<% form_for :order do |form| %>
+		<fieldset> 
+			<legend>Please Enter Your Details</legend>
+			<div>
+				<%= form.label :pay_type, "Pay with:" %> 
+				<%=
+					form.select :pay_type, 
+								Order::PAYMENT_TYPES
+								#:prompt => "Select a payment method"
+				%>
+			</div>
+			
+			<%= submit_tag "Place Order", :class => "submit" %>
+			
+			<%= link_to "Cancel Order", {:action => 'cancel_order'},
+										{:class => "cancel", 
+										:confirm => "Are you sure you want to cancel your order?" }
+			%>
+		</fieldset>
+		
+	<% end %>
+</div>
