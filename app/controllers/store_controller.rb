@@ -82,40 +82,28 @@ class StoreController < ApplicationController
   end
   
   def paypal_verify
+    @err_msg = nil
+    
     tx_id = params[:tx]
     puts "\ntx_id=#{tx_id}"
-=begin
-    url = URI.parse(PAYPAL_URL)
-    req = Net::HTTP::Post.new(url.path)
-    
-    req.set_form_data({'cmd'=>'_notify-synch','tx'=>tx_id,'at'=>ID_TOKEN}, '&')
-    res = Net::HTTP.new(url.host, 443)
-    res.use_ssl=(true)
-    res.start {|http| http.request(req) }
-    case res
-    when Net::HTTPSuccess, Net::HTTPRedirection
-      puts "\nRES= #{res.body}"
-    else
-      puts "\nERROR RES= #{res.error}"
-      res.error!
-    end
-=end
-
-    #res = Net::HTTP.post_form(URI.parse(PAYPAL_URL),
-                                        #{'cmd'=>'_notify-synch','tx'=>tx_id,'at'=>ID_TOKEN})
-    #puts res.body
 
     http = Net::HTTP.new(PAYPAL_URL, 443)
     http.use_ssl = true
 
     data = "cmd=_notify-synch&tx=#{tx_id}&at=#{ID_TOKEN}"
     resp, data = http.post(PAYPAL_PATH, data)
-    puts "\nCode = #{resp.code}"
-    puts "\nMessage = #{resp.message}"
+    puts "\nCode = #{resp.code}\n"
+    puts "\nMessage = #{resp.message}\n"
     resp.each {|key, val| puts key + ' = ' + val}
-    puts data
+    puts "\nDATA= #{data}\n"
 
-
+    if data.include?("SUCCESS")
+      @msg = "Thanks for your order!<br />PayPal response:<br/><br/>" + data
+      params[:order] = "pay_type=paypal"
+      save_order
+    else
+      @msg = "Oops, something went wrong!<br/> PayPal response:<br/><br/>#{data}"
+    end
   end
   
   def cancel_order
