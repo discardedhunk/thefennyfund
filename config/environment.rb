@@ -87,5 +87,5 @@ ActionMailer::Base.smtp_settings = {
     :domain         => "thefennyfund.heroku.com",
     :authentication => :plain,
     :user_name      => "jayl5150@gmail.com",
-    :password       => "jou812#$"
+    :password       => "jou812\#$"
   }
