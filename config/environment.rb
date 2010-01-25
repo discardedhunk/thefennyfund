@@ -77,7 +77,7 @@ Rails::Initializer.run do |config|
 
   config.action_mailer.raise_delivery_errors = true
 
-  config.active_record.observers = :customer_observer
+  #config.active_record.observers = :customer_observer
 
   
 end
