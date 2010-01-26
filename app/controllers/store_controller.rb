@@ -98,7 +98,7 @@ class StoreController < ApplicationController
     resp.each {|key, val| puts key + ' = ' + val}
     puts "\nDATA= #{data}\n"
 
-    data.sub!(/\n/, '<br/>')
+    data.gsub!(/\n/, '<br/>')
 
     @last_id = nil
 
