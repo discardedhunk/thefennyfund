@@ -107,14 +107,14 @@ class StoreController < ApplicationController
       @msg = "PayPal response:<br/><br/>" + data
       params[:order] = {"pay_type"=>"paypal"}
       save_order
-      @last_id = Order.last.id
+      @last_order = Order
     else
       flash[:notice] = "Oops, something went wrong!"
       @msg = "PayPal response:<br/><br/>#{data}"
     end
 
     
-    puts "\nlast_id= #{@last_id}"
+    puts "\nlast_id= #{@last_order}"
   end
   
   def cancel_order
