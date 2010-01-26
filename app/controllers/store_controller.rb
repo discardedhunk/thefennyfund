@@ -77,6 +77,7 @@ class StoreController < ApplicationController
       else
         logger.debug("\n NEW ORDER?\n")
         @order = Order.new
+        @total = @cart.total_price
       end
     end 
   end

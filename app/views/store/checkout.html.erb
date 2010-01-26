@@ -3,8 +3,12 @@
 	<%= error_messages_for 'order' %>
 
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" value="_s-xclick" name="cmd" />
-    <input type="hidden" value="6730573" name="hosted_button_id" />
+    <input type="hidden" name="business" value="tschiffer@thefennyfund.com"/>
+    <input type="hidden" name="cmd" value="_donations"/>
+    <input type="hidden" name="item_name" value="The Fenny Fund"/>
+    <input type="hidden" value="<%= @total %>" name="amount"  />
+    <input type="hidden" name="currency_code" value="USD"/>
+    
 		<fieldset> 
 			<legend>Please Enter Your Details</legend>
 			<div>
