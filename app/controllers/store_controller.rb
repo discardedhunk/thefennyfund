@@ -59,7 +59,7 @@ class StoreController < ApplicationController
   def checkout()
 
     puts "\nIN CHECKOUT\n"
-
+    session[:pp_verified] = false
     unless Customer.find_by_id(session[:customer_id])
       session[:original_uri] = request.request_uri
       flash[:notice] = "Please log in"
@@ -83,10 +83,8 @@ class StoreController < ApplicationController
   end
   
   def paypal_verify
-    @err_msg = nil
     
     tx_id = params[:tx]
-    puts "\ntx_id=#{tx_id}"
 
     http = Net::HTTP.new(PAYPAL_URL, 443)
     http.use_ssl = true
@@ -100,14 +98,15 @@ class StoreController < ApplicationController
 
     data.gsub!(/\n/, '<br/>')
 
-    @last_id = nil
-
-    if data.include?("SUCCESS")
+    if data.include?("SUCCESS") && data.include?(tx_id)
       flash[:notice] = "Thanks for your order!"
       @msg = "PayPal response:<br/><br/>" + data
       params[:order] = {"pay_type"=>"paypal"}
-      save_order
+      if session[:pp_verified] == false
+        save_order
+      end
       @last_order = Order.last
+      session[:pp_verified] = true
     else
       flash[:notice] = "Oops, something went wrong!"
       @msg = "PayPal response:<br/><br/>#{data}"

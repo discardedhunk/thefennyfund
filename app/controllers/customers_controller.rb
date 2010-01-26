@@ -104,6 +104,7 @@ class CustomersController < ApplicationController
   def logout
     session[:customer_id] = nil
     session[:customer_name] = nil
+    session[:pp_verified] = nil
     flash[:notice] = "Logged out"
     redirect_to('/store/')
   end
