@@ -1,15 +1,21 @@
 
 
 <p>
+  <b>Order Number:</b>
+  <%=h @order.id %><br />
   <b>Pay type:</b>
-  <%=h @order.pay_type %>
+  <%=h @order.pay_type %><br/>
+  <% if @order.pay_type == "paypal" %>
+    <b>PayPal Transaction ID: </b>
+    <%=h @order.pp_tx_id %>
+  <% end %>
 </p>
 
 <table id="order_summary" >
   <thead>
     <tr>
       <th>Product</th>
-      <th>Order</th>
+      <th>Customer ID</th>
       <th>Quantity</th>
       <th>Total price</th>
     </tr>
@@ -18,7 +24,7 @@
     <% @order.line_items.each do |line_item| %>
     <tr>
       <td><%=h line_item.product_id %></td>
-      <td><%=h line_item.order_id %></td>
+      <td><%= link_to @order.customer_id, admin_customer_path(@order.customer_id) %></td>
       <td><%=h line_item.quantity %></td>
       <td><%=h line_item.total_price %></td>
     </tr>

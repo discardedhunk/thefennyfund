@@ -4,7 +4,11 @@
   <b>Order Number:</b>
   <%=h @order.id %><br />
   <b>Pay type:</b>
-  <%=h @order.pay_type %>
+  <%=h @order.pay_type %><br/>
+  <% if @order.pay_type == "paypal" %>
+    <b>PayPal Transaction ID: </b>
+    <%=h @order.pp_tx_id %>
+  <% end %>
 </p>
 
 <table id="order_summary" >
