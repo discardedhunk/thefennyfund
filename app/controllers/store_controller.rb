@@ -91,10 +91,10 @@ class StoreController < ApplicationController
 
     data = "cmd=_notify-synch&tx=#{tx_id}&at=#{ID_TOKEN}"
     resp, data = http.post(PAYPAL_PATH, data)
-    puts "\nCode = #{resp.code}\n"
-    puts "\nMessage = #{resp.message}\n"
+    logger.debug "\nCode = #{resp.code}\n"
+    logger.debug "\nMessage = #{resp.message}\n"
     resp.each {|key, val| puts key + ' = ' + val}
-    puts "\nDATA= #{data}\n"
+    logger.debug "\nDATA= #{data}\n"
 
     data.gsub!(/\n/, '<br/>')
 
@@ -103,9 +103,9 @@ class StoreController < ApplicationController
       @msg = "PayPal response:<br/><br/>" + data
       params[:order] = {"pay_type"=>"paypal"}
       if session[:pp_verified] == false
-        save_order
+        save_order(:pp_tx_id => tx_id)
       end
-      @last_order = Order.last
+      @last_order = Order.find_by_pp_tx_id(tx_id)
       session[:pp_verified] = true
     else
       flash[:notice] = "Oops, something went wrong!"
@@ -146,9 +146,13 @@ class StoreController < ApplicationController
       session[:counter] = 0
     end
     
-    def save_order 
+    def save_order(opts={})
       @order = Order.new(params[:order])
       @order.customer_id = session[:customer_id]
+      logger.debug "\nOPTS= #{opts}"
+      if opts[:pp_tx_id]
+        @order.pp_tx_id = opts[:pp_tx_id]
+      end
       @order.add_line_items_from_cart(@cart) 
       if @order.save
         session[:cart] = nil
