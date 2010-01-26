@@ -97,13 +97,23 @@ class StoreController < ApplicationController
     resp.each {|key, val| puts key + ' = ' + val}
     puts "\nDATA= #{data}\n"
 
+    data.sub!(/\n/, '<br/>')
+
+    @last_id = nil
+
     if data.include?("SUCCESS")
-      @msg = "Thanks for your order!<br />PayPal response:<br/><br/>" + data
-      params[:order] = "pay_type=paypal"
+      flash[:notice] = "Thanks for your order!"
+      @msg = "PayPal response:<br/><br/>" + data
+      params[:order] = {"pay_type"=>"paypal"}
       save_order
+      @last_id = Order.last.id
     else
-      @msg = "Oops, something went wrong!<br/> PayPal response:<br/><br/>#{data}"
+      flash[:notice] = "Oops, something went wrong!"
+      @msg = "PayPal response:<br/><br/>#{data}"
     end
+
+    
+    puts "\nlast_id= #{@last_id}"
   end
   
   def cancel_order
@@ -144,7 +154,7 @@ class StoreController < ApplicationController
       @order.add_line_items_from_cart(@cart) 
       if @order.save
         session[:cart] = nil
-        redirect_to_index("Thank you for your order")
+        #redirect_to("Thank you for your order")
       else
         render :action => 'checkout'
       end 

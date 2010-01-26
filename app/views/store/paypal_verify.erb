@@ -1,1 +1,5 @@
+<% if @last_id != nil %>
+  Click <%= link_to "here", customer_order_path(@last_id) %> to download your purchase.
+<%  end %>
+
 <%= @msg %>
