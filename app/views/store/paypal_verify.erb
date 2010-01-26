@@ -1,5 +1,5 @@
 <% if @last_order != nil %>
-  Click <%= link_to "here", customer_order_path(@last_order) %> to download your purchase.
+  Click <%= link_to "here", customer_order_path({:customer_id => @last_order.customer_id, :id => @last_order.id}) %> to download your purchase.
 <%  end %>
 
 <%= @msg %>
