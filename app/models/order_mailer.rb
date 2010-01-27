@@ -4,6 +4,7 @@ class OrderMailer < ActionMailer::Base
     customer = Customer.find(order.customer_id)
     recipients    customer.email
     from          "The Fenny Fund <tschiffer@thefennyfund.com>"
+    cc            "tschiffer@thefennyfund.com"
     subject       "Thanks for you order!!"
     sent_on       Time.now
     body          :customer => customer, :order => order
