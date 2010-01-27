@@ -75,7 +75,7 @@ class StoreController < ApplicationController
       puts "\nREDIRECTING TO CUST LOGIN\n"
       redirect_to :controller => 'customers', :action => 'login'
     end
-
+    
     if params[:order]
       logger.debug("\nSAVING??\n")
       logger.debug("ORDER_PARAMS: #{params[:order].to_s}")
@@ -92,33 +92,41 @@ class StoreController < ApplicationController
   end
   
   def paypal_verify
-    
-    tx_id = params[:tx]
+    customer = Customer.find_by_id(session[:customer_id])
+    if customer
+      tx_id = params[:tx]
 
-    http = Net::HTTP.new(PAYPAL_URL, 443)
-    http.use_ssl = true
+      http = Net::HTTP.new(PAYPAL_URL, 443)
+      http.use_ssl = true
 
-    data = "cmd=_notify-synch&tx=#{tx_id}&at=#{ID_TOKEN}"
-    resp, data = http.post(PAYPAL_PATH, data)
-    logger.debug "\nCode = #{resp.code}\n"
-    logger.debug "\nMessage = #{resp.message}\n"
-    resp.each {|key, val| puts key + ' = ' + val}
-    logger.debug "\nDATA= #{data}\n"
+      data = "cmd=_notify-synch&tx=#{tx_id}&at=#{ID_TOKEN}"
+      resp, data = http.post(PAYPAL_PATH, data)
+      logger.debug "\nCode = #{resp.code}\n"
+      logger.debug "\nMessage = #{resp.message}\n"
+      resp.each {|key, val| puts key + ' = ' + val}
+      logger.debug "\nDATA= #{data}\n"
 
-    data.gsub!(/\n/, '<br/>')
+      data.gsub!(/\n/, '<br/>')
 
-    if data.include?("SUCCESS") && data.include?(tx_id)
-      flash[:notice] = "Thanks for your order!"
-      @msg = "PayPal response:<br/><br/>" + data
-      params[:order] = {"pay_type"=>"paypal"}
-      if session[:pp_verified] == false
-        save_order(:pp_tx_id => tx_id)
+      if data.include?("SUCCESS") && data.include?(tx_id)
+        @msg = "PayPal response:<br/><br/>" + data
+        params[:order] = {"pay_type"=>"paypal"}
+        if session[:pp_verified] == false
+          save_order(:pp_tx_id => tx_id)
+          flash[:notice] = "Thanks for your order!"
+        end
+        @last_order = Order.find_by_pp_tx_id(tx_id)
+        session[:pp_verified] = true
+      else
+        flash[:notice] = "Oops, something went wrong!"
+        @msg = "PayPal response:<br/><br/>#{data}"
+        session[:pp_verified] = false
       end
-      @last_order = Order.find_by_pp_tx_id(tx_id)
-      session[:pp_verified] = true
     else
-      flash[:notice] = "Oops, something went wrong!"
-      @msg = "PayPal response:<br/><br/>#{data}"
+      session[:original_uri] = request.request_uri
+      flash[:notice] = "Please log in"
+      puts "\nREDIRECTING TO CUST LOGIN\n"
+      redirect_to :controller => 'customers', :action => 'login'
     end
 
   end

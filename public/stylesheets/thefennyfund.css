@@ -104,7 +104,7 @@ h1 {
 }
 
 #store .entry  .price {
-  color: #44a;
+  color: #141;
   font-weight: bold;
   margin-right: 2em; 
 }
@@ -200,7 +200,7 @@ h1 {
 }
 #text {
   padding-top: 40px;
-  font: small-caps 40px/40px "Times New Roman", serif;
+  font: small-caps 40px/40px sans-serif;
 	color: #E4D4AE;
   text-align: center;
 }
@@ -217,6 +217,7 @@ h1 {
 	padding-top: 2ex;
 	padding-left: 2em; 
 	background: white;
+  font-family: sans-serif;
 }
 #side { 
 	float: left; 
@@ -227,11 +228,13 @@ h1 {
 	/*background: #141;
 	color: #bfb;*/
   background: #E4D4AE;
-  color: #141
+  color: #141;
+  font-family: sans-serif;
 }
 #side a { 
-	color: black;
+	color: #283329;
 	font-size:large;
+  font-family: sans-serif;
 }
 /* Styles for order form */
 
