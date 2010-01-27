@@ -6,7 +6,8 @@ class OrderMailer < ActionMailer::Base
     from          "The Fenny Fund <tschiffer@thefennyfund.com>"
     subject       "Thanks for you order!!"
     sent_on       Time.now
-    body          :customer => customer, :order => order, :host => "https://thefennyfund.heroku.com"
+    body          :customer => customer, :order => order
+    default_url_options[:host] = "thefennyfund.keroku.com"
   end
 
 end
