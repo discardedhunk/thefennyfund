@@ -7,7 +7,8 @@ class OrderMailer < ActionMailer::Base
     subject       "Thanks for you order!!"
     sent_on       Time.now
     body          :customer => customer, :order => order
-    default_url_options[:host] = "thefennyfund.keroku.com"
+    default_url_options[:host] = "thefennyfund.heroku.com"
+    default_url_options[:protocol] = "https"
   end
 
 end
