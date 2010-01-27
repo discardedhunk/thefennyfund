@@ -6,7 +6,7 @@ class OrderMailer < ActionMailer::Base
     from          "The Fenny Fund <tschiffer@thefennyfund.com>"
     subject       "Thanks for you order!!"
     sent_on       Time.now
-    body          :customer => customer, :url => "https://thefennyfund.heroku.com/store/customers/login"
+    body          :customer => customer, :order => order
   end
 
 end
