@@ -26,7 +26,8 @@ class StoreController < ApplicationController
   end
   
   def add_to_cart()
-    product = Product.find(params[:id]) 
+    product = Product.find(params[:id])
+    
     @count = reset_count
     @current_item = @cart.add_product(product)
       respond_to do |format|
@@ -36,6 +37,14 @@ class StoreController < ApplicationController
     rescue ActiveRecord::RecordNotFound 
       logger.error("Attempt to access invalid product #{params[:id]}") 
       redirect_to_index("Invalid product") 
+  end
+
+  def add_all_to_cart()
+    products = Product.all()
+    for product in products
+      @cart.add_product(product)
+    end
+    redirect_to_index
   end
   
   def empty_cart()

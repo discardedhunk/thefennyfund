@@ -1,5 +1,7 @@
 <h1>The Fenny Fund Catalog</h1>
 
+<%= button_to "Add All to Cart", :action => 'add_all_to_cart' %>
+
 <% for product in @products -%>
 	<div class="entry">
 		<% form_remote_tag :url => { :action => :add_to_cart, :id => product } do %>
