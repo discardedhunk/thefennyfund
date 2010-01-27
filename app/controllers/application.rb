@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   layout "store"
-  before_filter :authorize, :except => [:login]
+  before_filter :require_ssl, :authorize, :except => [:login]
   #before_filter :record_prev_uri
   after_filter :record_prev_uri
   helper :all # include all helpers, all the time
@@ -43,6 +43,10 @@ class ApplicationController < ActionController::Base
     def record_prev_uri
       @prev_uri = request.request_uri
       logger.debug "\nprev_uri= #{@prev_uri}\n"
+    end
+
+    def require_ssl
+      redirect_to :protocol => "https://" unless (request.ssl? or local_request?)
     end
     
 end
