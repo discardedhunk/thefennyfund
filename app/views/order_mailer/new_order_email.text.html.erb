@@ -12,7 +12,7 @@
     <p>
     <b>Order Number:</b>
     <%= link_to @order.id, customer_order_path(
-    {:customer_id => @order.customer_id, :id => @order.id}) %><br />
+    {:customer_id => @order.customer_id, :id => @order.id, :host => "thefennyfund.heroku.com", :protocol => "https"}) %><br />
     <b>Pay type:</b>
     <%=h @order.pay_type %><br/>
     <% if @order.pay_type == "paypal" %>
