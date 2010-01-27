@@ -11,7 +11,8 @@
 
     <p>
     <b>Order Number:</b>
-    <%=h @order.id %><br />
+    <%= link_to @order.id, customer_order_path(
+    {:customer_id => @order.customer_id, :id => @order.id}) %><br />
     <b>Pay type:</b>
     <%=h @order.pay_type %><br/>
     <% if @order.pay_type == "paypal" %>
@@ -36,12 +37,13 @@
           <td><%=h line_item.quantity %></td>
           <td><%=h line_item.total_price %></td>
           <% if line_item.product.category == 'music' %>
-            <td><%= link_to line_item.product.music_file_name, line_item.product.music.get_priv_url %></td>
+            <td>* <%= link_to line_item.product.music_file_name, line_item.product.music.get_priv_url %></td>
           <% end %>
         </tr>
       <% end %>
       </tbody>
     </table>
     <p>Thanks ordering and have a great day!</p>
+    <p>* Link is only valid for 5 minutes. Click on your order ID above to obtain a new link.</p>
   </body>
 </html>
