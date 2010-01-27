@@ -4,11 +4,44 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Welcome to The Fenny Fund Store, <%=h @customer.first_name %>!</h1>
+    <h1>Thanks for you order, <%=h @customer.first_name %>!</h1>
     <p>
-      You have successfully signed up to The Fenny Fund Store, and your username is: <%= @customer.login %>.<br/>
-      To login to the site, just follow this link: <%=h @url %>.
+      Here are the details for your order:
     </p>
-    <p>Thanks for joining and have a great day!</p>
+
+    <p>
+    <b>Order Number:</b>
+    <%=h @order.id %><br />
+    <b>Pay type:</b>
+    <%=h @order.pay_type %><br/>
+    <% if @order.pay_type == "paypal" %>
+      <b>PayPal Transaction ID: </b>
+      <%=h @order.pp_tx_id %>
+    <% end %>
+    </p>
+
+    <table id="order_summary" >
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Total price</th>
+          <th>Download URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.line_items.each do |line_item| %>
+        <tr>
+          <td><%= link_to line_item.product.title, product_url(line_item.product_id) %></td>
+          <td><%=h line_item.quantity %></td>
+          <td><%=h line_item.total_price %></td>
+          <% if line_item.product.category == 'music' %>
+            <td><%= link_to line_item.product.music_file_name, line_item.product.music.get_priv_url %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <p>Thanks ordering and have a great day!</p>
   </body>
 </html>
