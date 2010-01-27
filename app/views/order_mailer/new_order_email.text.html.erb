@@ -43,6 +43,6 @@
       </tbody>
     </table>
     <p>Thanks ordering and have a great day!</p>
-    <p>* Link is only valid for 5 minutes. Click on your order ID above to obtain a new link.</p>
+    <p>* Link is valid for 5 minutes. Click <%= link_to "here", customer_order_url({:customer_id => @order.customer_id, :id => @order.id}) %> to obtain a new link.</p>
   </body>
 </html>
