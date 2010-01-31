@@ -8,7 +8,7 @@ h1 {
 
 #cust-name {
         font:  110% sans-serif;
-        font-syle: bold;
+        font-weight: bold;
         color: #226;
         border-bottom: 3px dotted #77d;
 }
@@ -200,7 +200,7 @@ h1 {
 }
 #text {
   padding-top: 40px;
-  font: small-caps 40px/40px sans-serif;
+  font: small-caps 40px/40px fantasy;
 	color: #E4D4AE;
   text-align: center;
 }
@@ -234,7 +234,7 @@ h1 {
 #side a { 
 	color: #283329;
 	font-size:large;
-  font-family: sans-serif;
+  font-family: helvetica;
 }
 /* Styles for order form */
 

@@ -2,10 +2,10 @@
   
 	<%= error_messages_for 'order' %>
 
-	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="business" value="tschiffer@thefennyfund.com"/>
-    <input type="hidden" name="cmd" value="_donations"/>
-    <input type="hidden" name="item_name" value="The Fenny Fund"/>
+  <form action=<%= @pp_form_url %>  method="post">
+    <input type="hidden" name="business" value=<%= @pp_business %> />
+    <input type="hidden" name="cmd" value=<%= @pp_cmd %> />
+    <input type="hidden" name="item_name" value="<%= @pp_item %>" />
     <input type="hidden" value="<%= @total %>" name="amount"  />
     <input type="hidden" name="currency_code" value="USD"/>
     

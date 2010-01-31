@@ -1,0 +1,7 @@
+## YAML Template.
+
+production:
+  cc_email: "tschiffer@thefennyfund.com"
+
+development:
+  cc_email: "jayubba@gmail.com"

@@ -1,14 +1,10 @@
-require 'net/http'
-require 'net/https'
-require 'uri'
+require 'paypal_stuff/pdt'
 
 class StoreController < ApplicationController
+
+  PAYPAL_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/paypal.yml")[RAILS_ENV]
   
   before_filter :require_ssl, :find_cart, :except => :empty_cart
-
-  ID_TOKEN = "Cb93BAgmMAw3tuwT3N-iyXiQwX7dSxSptsC_N5Iv_sbAci53_oPmECIeU2u"
-  PAYPAL_URL = 'www.paypal.com'
-  PAYPAL_PATH = '/cgi-bin/webscr'
 
   def index()
     @current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
@@ -66,8 +62,14 @@ class StoreController < ApplicationController
   end
   
   def checkout()
+    @pp_form_url = PAYPAL_CONFIG['form_url']
+    @pp_business = PAYPAL_CONFIG['business']
+    @pp_cmd = PAYPAL_CONFIG['cmd']
+    @pp_item = PAYPAL_CONFIG['item_name']
 
-    puts "\nIN CHECKOUT\n"
+    logger.debug "\nIN CHECKOUT\n"
+    logger.debug "\npp_form_url= #{@pp_form_url+@pp_cmd}\n"
+    logger.debug "\npp_business= #{@pp_business}"
     session[:pp_verified] = false
     unless Customer.find_by_id(session[:customer_id])
       session[:original_uri] = request.request_uri
@@ -77,14 +79,14 @@ class StoreController < ApplicationController
     end
     
     if params[:order]
-      logger.debug("\nSAVING??\n")
+      logger.debug("\nSAVING ORDER\n")
       logger.debug("ORDER_PARAMS: #{params[:order].to_s}")
       save_order
     else
       if @cart.items.empty?
         redirect_to_index("Your cart is empty")
       else
-        logger.debug("\n NEW ORDER?\n")
+        logger.debug("\nNEW ORDER\n")
         @order = Order.new
         @total = @cart.total_price
       end
@@ -96,20 +98,9 @@ class StoreController < ApplicationController
     if customer
       tx_id = params[:tx]
 
-      http = Net::HTTP.new(PAYPAL_URL, 443)
-      http.use_ssl = true
-
-      data = "cmd=_notify-synch&tx=#{tx_id}&at=#{ID_TOKEN}"
-      resp, data = http.post(PAYPAL_PATH, data)
-      logger.debug "\nCode = #{resp.code}\n"
-      logger.debug "\nMessage = #{resp.message}\n"
-      resp.each {|key, val| puts key + ' = ' + val}
-      logger.debug "\nDATA= #{data}\n"
-
-      data.gsub!(/\n/, '<br/>')
-
-      if data.include?("SUCCESS") && data.include?(tx_id)
-        @msg = "PayPal response:<br/><br/>" + data
+      success,msg = PaypalStuff::Pdt.pdt_verify(tx_id)
+      @msg = msg
+      if success
         params[:order] = {"pay_type"=>"paypal"}
         if session[:pp_verified] == false
           save_order(:pp_tx_id => tx_id)
@@ -119,9 +110,9 @@ class StoreController < ApplicationController
         session[:pp_verified] = true
       else
         flash[:notice] = "Oops, something went wrong!"
-        @msg = "PayPal response:<br/><br/>#{data}"
         session[:pp_verified] = false
       end
+
     else
       session[:original_uri] = request.request_uri
       flash[:notice] = "Please log in"

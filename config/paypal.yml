@@ -1,0 +1,20 @@
+## YAML Template.
+
+production:
+  id_token: "Cb93BAgmMAw3tuwT3N-iyXiQwX7dSxSptsC_N5Iv_sbAci53_oPmECIeU2u"
+  url: 'www.paypal.com'
+  path: '/cgi-bin/webscr'
+  form_url: 'https://www.paypal.com/cgi-bin/webscr'
+  business: "tschiffer@thefennyfund.com"
+  cmd: "_donations"
+  item_name: "The Fenny Fund"
+
+development:
+  id_token: "Q_5WBpF6_DaywxmCLlz7ouZk1R72me0WgBnQsHR6fRAg5u-dWnGE8PnL4wa"
+  url: 'www.sandbox.paypal.com'
+  path: '/cgi-bin/webscr'
+  form_url: 'https://www.sandbox.paypal.com/cgi-bin/webscr'
+  business: "jayubba@gmail.com"
+  cmd: "_donations"
+  item_name: "The Fenny Fund"
+
