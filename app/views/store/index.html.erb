@@ -11,7 +11,7 @@
                                     :class => "img") %>
 		<% end %>
 		<h3><%=h product.title %></h3>
-		<%= product.description %>
+		<%=h product.description %>
 		<div class="price-line">
 			<span class="price"><%= number_to_currency(product.price) %></span>
 			<% form_remote_tag :url => { :action => 'add_to_cart',

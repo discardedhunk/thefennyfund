@@ -39,7 +39,7 @@
 			<% end %>
       <% if session[:customer_id] %>
 				<br />
-        Cusomter Options:<br />
+        Customer Options:<br />
 				<%= link_to 'Orders',	customer_orders_url(session[:customer_id]) %><br />
         <%= link_to 'Profile',	customer_url(session[:customer_id]) %><br />
 				<br />
