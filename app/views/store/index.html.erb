@@ -1,7 +1,11 @@
 <h1>The Fenny Fund Catalog</h1>
 
+<script type="text/javascript" src="/javascripts/soundmanager2.js"></script>
+<script type="text/javascript" src="/javascripts/soundmanager2-rails.js"></script>
+
 <%= button_to "Add All to Cart", :action => 'add_all_to_cart' %>
 
+<% sounds = [] %>
 <% for product in @products -%>
 	<div class="entry">
 		<% form_remote_tag :url => { :action => :add_to_cart, :id => product } do %>
@@ -12,6 +16,10 @@
 		<% end %>
 		<h3><%=h product.title %></h3>
 		<%=h product.description %>
+    <div class="play-sample-line">
+      <%  sounds << [product.id, product.music.get_priv_url]  %>
+      <div> Play Sample: <%= toggle_sound product.id %></div>
+    </div>
 		<div class="price-line">
 			<span class="price"><%= number_to_currency(product.price) %></span>
 			<% form_remote_tag :url => { :action => 'add_to_cart',
@@ -21,3 +29,5 @@
 		</div>
 	</div>
 <% end %>
+
+<%= initialize_sounds(sounds) %>
