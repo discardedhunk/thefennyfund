@@ -17,7 +17,7 @@
 		<h3><%=h product.title %></h3>
 		<%=h product.description %>
     <div class="play-sample-line">
-      <%  sounds << [product.id, product.music.get_priv_url]  -%>
+      <%  sounds.push([product.id, product.music.get_priv_url])  %>
       <div> Play Sample: <%= toggle_sound product.id %></div>
     </div>
 		<div class="price-line">
