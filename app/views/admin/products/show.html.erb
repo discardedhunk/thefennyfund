@@ -12,7 +12,7 @@
   <b>Category:</b>
   <%=h @product.category %>
 </p>
-<% if @product.category == "music" && product.music_file_name != nil %>
+<% if @product.category == "music" && @product.music_file_name != nil %>
 <p>
   <b>Dl url:</b>
   <%=link_to @product.music_file_name, @product.music.url %>
