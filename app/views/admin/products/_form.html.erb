@@ -1,0 +1,49 @@
+
+<%= error_messages_for :product %>
+
+<% form_for([:admin, @product], :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.label :grouping %><br />
+    <%= f.text_field :grouping %>
+  </p>
+  <p>
+    <%= f.label :band_name %><br/>
+    <%= f.text_field :band_name %>
+  </p>
+  <div id="band_links">
+     <%= render :partial => 'band_link', :collection => @product.band_links %>
+  </div>
+  <p>
+    <%= add_link_link "Add Link" %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :image %><br />
+    <%=	f.file_field :photo %>
+  </p>
+  <p>
+    <%= f.label :music_file %><br />
+    <%=	f.file_field :music %>
+  </p>
+  <p>
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+

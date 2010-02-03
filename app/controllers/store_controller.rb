@@ -9,6 +9,8 @@ class StoreController < ApplicationController
   def index()
     @current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
     @products = Product.find_products_for_sale
+    @sounds = []
+    puts "\nPRODUCTS= #{@products}\n"
     @display_count = nil
     @count = increment_count
     if @count > 5
@@ -36,7 +38,9 @@ class StoreController < ApplicationController
   end
 
   def add_all_to_cart()
-    products = Product.all()
+    grouping = params[:grouping]
+    puts "\nGROUPING= #{grouping}\n"
+    products = Product.find_all_by_grouping(grouping)
     for product in products
       @cart.add_product(product)
     end

@@ -25,7 +25,7 @@ class Admin::ProductsController < ApplicationController
   # GET /products/new.xml
   def new
     @product = Product.new
-
+    @product.band_links.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }
@@ -57,6 +57,8 @@ class Admin::ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
+    params[:product][:existing_band_link_attributes] ||= {}
+    
     @product = Product.find(params[:id])
 
     respond_to do |format|

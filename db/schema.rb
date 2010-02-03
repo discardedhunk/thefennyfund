@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100126214439) do
+ActiveRecord::Schema.define(:version => 20100202210812) do
+
+  create_table "band_links", :force => true do |t|
+    t.integer  "product_id", :null => false
+    t.string   "name",       :null => false
+    t.string   "url",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "customers", :force => true do |t|
     t.string   "first_name"
@@ -57,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20100126214439) do
     t.string   "music_file_name"
     t.string   "music_content_type"
     t.integer  "music_file_size"
+    t.string   "band_name"
+    t.string   "grouping"
   end
 
   create_table "sessions", :force => true do |t|

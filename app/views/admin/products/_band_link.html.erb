@@ -1,0 +1,13 @@
+<div class="band_link">
+
+<% new_or_existing = band_link.new_record? ? 'new' : 'existing' %>
+<% prefix = "product[#{new_or_existing}_band_link_attributes][]" %>
+
+<% fields_for prefix, band_link do |band_link_form| -%>
+  <p>
+    Link Name: <%= band_link_form.text_field :name %>
+    URL: <%= band_link_form.text_field :url %>
+    <%= link_to_function "remove", "$(this).up('.band_link').remove()" %>
+  </p>
+<% end -%>
+</div>
