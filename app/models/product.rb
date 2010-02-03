@@ -45,8 +45,8 @@ class Product < ActiveRecord::Base
 
   validates_uniqueness_of :title
   validates_length_of :title,
-                      :in => 5..30,
-                      :message => 'must be between 5 and 30 characters'
+                      :in => 1..200,
+                      :message => 'must be between 1 and 200 characters'
   validate :price_must_be_at_least_a_cent
   #validates_format_of :image_url,
   #                    :with => %r{\.(gif|jpg|png)$}i,
