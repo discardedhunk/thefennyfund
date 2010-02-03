@@ -16,7 +16,7 @@
         <%= link.get_link %>&nbsp;
       <% end %>
       <div class="play-sample-line">
-        <% if product.music != nil %>
+        <% if product.music_file_name != nil %>
           <%  @sounds.push([product.id, product.music.get_priv_url]) %>
         <% end %>
         <div> Play Sample: <%= toggle_sound product.id %></div>
