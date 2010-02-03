@@ -16,8 +16,8 @@
     <td><%=h customer.email %></td>
     <td><%=h customer.login %></td>
     <td><%=h customer.address %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+    <td><%= link_to 'Show', admin_customer_path(customer) %></td>
+    <td><%= link_to 'Edit', edit_admin_customer_path(customer) %></td>
     <td><%= link_to 'Destroy', admin_customer_path(customer), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

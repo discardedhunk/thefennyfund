@@ -60,7 +60,7 @@ class CustomersController < ApplicationController
   # PUT /customers/1
   # PUT /customers/1.xml
   def update
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(session[:customer_id])
 
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
@@ -108,7 +108,7 @@ class CustomersController < ApplicationController
     flash[:notice] = "Logged out"
     redirect_to('/store/')
   end
-
+=begin
   # DELETE /customers/1
   # DELETE /customers/1.xml
   def destroy
@@ -120,4 +120,5 @@ class CustomersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
 end

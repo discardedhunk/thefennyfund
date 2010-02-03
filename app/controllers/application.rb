@@ -30,9 +30,8 @@ class ApplicationController < ActionController::Base
           flash[:notice] = "Please log in"
           redirect_to :controller => 'admin', :action => 'login'
         end
-      end
-      if request.request_uri.include?("customers")
-        unless Customer.find_by_id(session[:customer_id]) or ( request.path_parameters[:controller] == 'customers' and ( request.path_parameters[:action] == 'new' or request.path_parameters[:action] == 'create' ) )
+      elsif request.request_uri.include?("customers")
+        unless Customer.find_by_id(session[:customer_id]) or ( request.path_parameters[:controller] == 'customers' and ( request.path_parameters[:action] == 'new' or request.path_parameters[:action] == 'create' ) ) or User.find_by_id(session[:user_id])
           session[:original_uri] = request.request_uri
           flash[:notice] = "Please log in"
           redirect_to :controller => 'customers', :action => 'login'
