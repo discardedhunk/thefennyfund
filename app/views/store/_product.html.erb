@@ -15,7 +15,6 @@
       Links:<% product.band_links.each do |link| %>
         <%= link.get_link %>&nbsp;
       <% end %>
-      <% if  %>
       <div class="play-sample-line">
         <%  @sounds.push([product.id, product.music.get_priv_url]) %>
         <div> Play Sample: <%= toggle_sound product.id %></div>
