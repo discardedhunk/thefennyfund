@@ -13,7 +13,7 @@
 		<%=h product.description %><br/>
     <% if product.category == "music" && product.music_file_name != nil %>
       Links:<% product.band_links.each do |link| %>
-        <%= link.get_link %>&nbsp;
+        <%= link_to link.name, link.url, :popup => true %>&nbsp;
       <% end %>
       <div class="play-sample-line">
         <%  @sounds.push([product.id, product.music.get_priv_url]) %>
