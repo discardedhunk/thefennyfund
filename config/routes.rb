@@ -1,16 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.login '/store/customers/login', :controller => 'customers', :action => 'login'
   map.logout '/store/customers/logout', :controller => 'customers', :action => 'logout'
-  #map.new_cust '/customers/new', :controller => 'customers', :action => 'new'
-
-  #map.resources :orders, :path_prefix => '/store', :has_many => :line_items
+  
   map.resources :customers, :except => [:destroy], :path_prefix => '/store', :has_many => :orders
-
-  #map.resources :users
-
-  #map.resources :line_items
-
-  #map.resources :orders
 
   map.resources :products, :path_prefix => '/store', :only => [:show]
 
@@ -24,15 +16,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "store", :path_prefix => '/store/', :action => "index"
 
-  
-=begin
-  map.resource :store do |store|
-       store.resources :customers
-       store.resources :orders, :has_many => :line_items
-       store.resources :products
-       #products.resources :sales, :collection => { :recent => :get }
-     end
-=end
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -1,104 +1,20 @@
 class ProductsController < ApplicationController
-  # GET /products
-  # GET /products.xml
-  def index
-=begin
-    @products = Product.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
-=end
-    redirect_to(root_url)
-  end
 
   # GET /products/1
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
-    sess_info = session.data
-    logger.debug "\nSession_info: #{sess_info}\n"
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product }
     end
-  end
 
-  # GET /products/new
-  # GET /products/new.xml
-  def new
-=begin
-    @product = Product.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @product }
-    end
-=end
-    redirect_to(root_url)
-  end
-
-  # GET /products/1/edit
-  def edit
-    @product = Product.find(params[:id])
-  end
-
-  # POST /products
-  # POST /products.xml
-  def create
-=begin
-    @product = Product.new(params[:product])
-
-    respond_to do |format|
-      if @product.save
-        flash[:notice] = 'Product was successfully created.'
-        format.html { redirect_to(@product) }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
-      end
-    end
-=end
-    redirect_to(root_url)
+    rescue ActiveRecord::RecordNotFound
+      logger.error("Attempt to access invalid product #{params[:id]}")
+      flash[:notice] = 'Product ID not found!'
+      redirect_to root_url
 
   end
 
-  # PUT /products/1
-  # PUT /products/1.xml
-  def update
-=begin
-    @product = Product.find(params[:id])
-
-    respond_to do |format|
-      if @product.update_attributes(params[:product])
-        flash[:notice] = 'Product was successfully updated.'
-        format.html { redirect_to(@product) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
-      end
-    end
-=end
-    redirect_to(root_url)
-  end
-
-  # DELETE /products/1
-  # DELETE /products/1.xml
-  def destroy
-=begin
-    @product = Product.find(params[:id])
-    @product.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(products_url) }
-      format.xml  { head :ok }
-    end
-=end
-    redirect_to(root_url)
-  end
-
-    
 end

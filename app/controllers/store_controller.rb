@@ -41,10 +41,12 @@ class StoreController < ApplicationController
     grouping = params[:grouping]
     puts "\nGROUPING= #{grouping}\n"
     products = Product.find_all_by_grouping(grouping)
-    for product in products
-      @cart.add_product(product)
-    end
-    redirect_to_index
+    @current_items = @cart.add_products(products)
+    logger.debug "\nCURRENT_ITEMS= #{@current_items}"
+      respond_to do |format|
+        format.js if request.xhr?
+        format.html {redirect_to_index}
+      end
   end
   
   def empty_cart()

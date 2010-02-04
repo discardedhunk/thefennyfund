@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
+
   # GET /customers
   # GET /customers.xml
-  
   def index
     redirect_to(root_url)
   end
@@ -9,18 +9,11 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.xml
   def show
-    if session[:customer_id]
-      logger.debug("in cust_controller show")
-      cust_id = session[:customer_id]
-      @customer = Customer.find(cust_id)
-
-      respond_to do |format|
-        format.html # show.html.erb
-        format.xml  { render :xml => @customer }
-      end
-    else
-      flash.now[:notice] = "Please Login"
-    end   
+    @customer = Customer.find(session[:customer_id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @customer }
+    end
   end
 
   # GET /customers/new_customer
@@ -78,8 +71,6 @@ class CustomersController < ApplicationController
   # GET /customers/login.xml
   def login
 
-    puts "\nIN CUST LOGIN\n"
-
     if request.get?
       flash[:notice] = nil
     elsif request.post?
@@ -108,17 +99,5 @@ class CustomersController < ApplicationController
     flash[:notice] = "Logged out"
     redirect_to('/store/')
   end
-=begin
-  # DELETE /customers/1
-  # DELETE /customers/1.xml
-  def destroy
-    @customer = Customer.find(params[:id])
-    @customer.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(customers_url) }
-      format.xml  { head :ok }
-    end
-  end
-=end
+  
 end

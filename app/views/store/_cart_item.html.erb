@@ -2,7 +2,7 @@
 <% if cart_item == @current_item %>
 	<tr id="current_item">
 <% else %>
-	<tr>
+	<tr id="<%= cart_item.id %>"
 <% end %>
     <td>
       <%= link_to_remote "+", {:url => { :action => :add_to_cart, :id => cart_item.product}}, {:href => url_for(:action => :add_to_cart, :id => cart_item.product) }  %>

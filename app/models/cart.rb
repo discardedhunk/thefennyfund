@@ -15,6 +15,14 @@ class Cart
     end
     current_item
   end
+
+  def add_products(products)
+    current_items = []
+    for product in products
+      current_items << add_product(product).id
+    end
+    current_items
+  end
   
   def remove_product(product)
     current_item = @items.find {|item| item.id == product.to_i}
