@@ -20,6 +20,9 @@
 <p>
   Priv url: <%= link_to @product.music_file_name, @product.music.get_priv_url %>
 </p>
+<p>
+  sample url: <%= link_to @product.music_sample_file_name, @product.music_sample.url %>
+</p>
 
 <% end %>
 

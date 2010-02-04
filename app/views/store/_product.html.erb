@@ -15,10 +15,12 @@
       Links:<% product.band_links.each do |link| %>
         <%= link_to link.name, link.url, :popup => true %>&nbsp;
       <% end %>
-      <div class="play-sample-line">
-        <%  @sounds.push([product.id, product.music.get_priv_url]) %>
-        <div> Play Sample: <%= toggle_sound product.id %></div>
-      </div>
+      <% if product.music_sample.url != nil %>
+        <div class="play-sample-line">
+          <%  @sounds.push([product.id, product.music_sample.url]) %>
+          <div> Play Sample: <%= toggle_sound product.id %></div>
+        </div>
+      <% end %>
     <% end %>
 		<div class="price-line">
 			<span class="price"><%= number_to_currency(product.price) %></span>

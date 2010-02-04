@@ -40,8 +40,11 @@ class Admin::ProductsController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
+    if params[:product][:category] == "music"
+      params[:product][:music_sample] = params[:product][:music]
+    end
     @product = Product.new(params[:product])
-
+    
     respond_to do |format|
       if @product.save
         flash[:notice] = 'Product was successfully created.'

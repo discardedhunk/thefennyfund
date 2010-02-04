@@ -39,6 +39,14 @@ class Product < ActiveRecord::Base
                     :bucket => 'thefennyfund_music_files2',
                     :s3_permissions => 'private'
 
+  has_attached_file :music_sample,
+                    :storage => :s3,
+                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :path => ":attachment/:id/sample_:filename",
+                    :bucket => 'thefennyfund_music_files2',
+                    :s3_permissions => 'public-read',
+                    :sample => 'yes'
+
   
   validates_presence_of :title, :description #, :image_url
   validates_numericality_of :price

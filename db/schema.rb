@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100202210812) do
+ActiveRecord::Schema.define(:version => 20100203224311) do
 
   create_table "band_links", :force => true do |t|
     t.integer  "product_id", :null => false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20100202210812) do
     t.string   "dl_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price",              :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "price",                     :precision => 8, :scale => 2, :default => 0.0
     t.string   "category"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -67,6 +67,9 @@ ActiveRecord::Schema.define(:version => 20100202210812) do
     t.integer  "music_file_size"
     t.string   "band_name"
     t.string   "grouping"
+    t.string   "music_sample_file_name"
+    t.string   "music_sample_content_type"
+    t.integer  "music_sample_file_size"
   end
 
   create_table "sessions", :force => true do |t|

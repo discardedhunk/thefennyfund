@@ -47,6 +47,7 @@ module Paperclip
       @queued_for_write  = {}
       @errors            = {}
       @dirty             = false
+      @sample            = options[:sample]
 
       initialize_storage
     end
@@ -73,7 +74,7 @@ module Paperclip
     #   new_user.avatar = old_user.avatar
     def assign uploaded_file
       ensure_required_accessors!
-
+  
       if uploaded_file.is_a?(Paperclip::Attachment)
         uploaded_file = uploaded_file.to_file(:original)
         close_uploaded_file = uploaded_file.respond_to?(:close)
@@ -89,7 +90,15 @@ module Paperclip
       @queued_for_write[:original]   = uploaded_file.to_tempfile
       instance_write(:file_name,       uploaded_file.original_filename.strip.gsub(/[^A-Za-z\d\.\-_]+/, '_'))
       instance_write(:content_type,    uploaded_file.content_type.to_s.strip)
-      instance_write(:file_size,       uploaded_file.size.to_i)
+
+      if @sample == "yes"
+        @sample_size = (uploaded_file.size.to_i * 0.10).to_i
+        log "\nSAMPLE_SIZE= #{@sample_size}\n"
+        instance_write(:file_size,       @sample_size)
+      else
+        instance_write(:file_size,       uploaded_file.size.to_i)
+      end
+
       instance_write(:updated_at,      Time.now)
 
       @dirty = true
@@ -97,7 +106,12 @@ module Paperclip
       post_process
  
       # Reset the file size if the original file was reprocessed.
-      instance_write(:file_size, @queued_for_write[:original].size.to_i)
+      if @sample == "yes"
+        instance_write(:file_size,       @sample_size)
+      else
+        instance_write(:file_size, @queued_for_write[:original].size.to_i)
+      end
+      
     ensure
       uploaded_file.close if close_uploaded_file
     end

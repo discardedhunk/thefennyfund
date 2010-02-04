@@ -143,6 +143,7 @@ module Paperclip
           @s3_protocol    = @options[:s3_protocol]    || (@s3_permissions == :public_read ? 'http' : 'https')
           @s3_headers     = @options[:s3_headers]     || {}
           @s3_host_alias  = @options[:s3_host_alias]
+          @sample         = @options[:sample]
           @url            = ":s3_path_url" unless @url.to_s.match(/^:s3.*url$/)
           AWS::S3::Base.establish_connection!( @s3_options.merge(
             :access_key_id => @s3_credentials[:access_key_id],
@@ -202,6 +203,10 @@ module Paperclip
       def flush_writes #:nodoc:
         @queued_for_write.each do |style, file|
           begin
+            if @sample == "yes"
+              log "\nSAMPLE???\n"
+              file = file.read(@sample_size)
+            end
             log("saving #{path(style)}")
             AWS::S3::S3Object.store(path(style),
                                     file,
