@@ -93,7 +93,7 @@ module SoundManager2
     def onload_function
       output = "soundManager.onload = function() {\n"
       @sounds.each do |sound|
-        output += %Q{\tsoundManager.createSound({id: "#{sound.id}", url: "#{sound.url}"});\n}
+        output += %Q{\tsoundManager.createSound({id: "#{sound.id}", url: "#{sound.url}", onfinish: function() \{toggle_sound\("#{sound.id}"\);\}});\n}
       end
       
       output += "}"
