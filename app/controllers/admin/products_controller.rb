@@ -60,6 +60,9 @@ class Admin::ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
+    if params[:product][:category] == "music"
+      params[:product][:music_sample] = params[:product][:music]
+    end
     params[:product][:existing_band_link_attributes] ||= {}
     
     @product = Product.find(params[:id])
