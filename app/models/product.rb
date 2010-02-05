@@ -45,7 +45,8 @@ class Product < ActiveRecord::Base
                     :path => ":attachment/:id/sample_:filename",
                     :bucket => 'thefennyfund_music_files2',
                     :s3_permissions => 'public-read',
-                    :sample => 'yes'
+                    :sample => 'yes',
+                    :sample_percent => '10'
 
   
   validates_presence_of :title, :description #, :image_url

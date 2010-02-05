@@ -204,7 +204,6 @@ module Paperclip
         @queued_for_write.each do |style, file|
           begin
             if @sample == "yes"
-              log "\nSAMPLE???\n"
               file = file.read(@sample_size)
             end
             log("saving #{path(style)}")
@@ -239,7 +238,7 @@ module Paperclip
         priv_url = AWS::S3::S3Object.url_for(path,
                    bucket_name,
                    :use_ssl => true)
-        log("newUrl= #{priv_url}")
+        log("privUrl= #{priv_url}")
         priv_url
       end
       

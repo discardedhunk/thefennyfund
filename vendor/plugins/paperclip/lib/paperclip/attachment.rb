@@ -48,6 +48,7 @@ module Paperclip
       @errors            = {}
       @dirty             = false
       @sample            = options[:sample]
+      @sample_percent    = options[:sample_percent]
 
       initialize_storage
     end
@@ -92,7 +93,7 @@ module Paperclip
       instance_write(:content_type,    uploaded_file.content_type.to_s.strip)
 
       if @sample == "yes"
-        @sample_size = (uploaded_file.size.to_i * 0.10).to_i
+        @sample_size = (uploaded_file.size.to_i * @sample_percent.to_i / 100).to_i
         log "\nSAMPLE_SIZE= #{@sample_size}\n"
         instance_write(:file_size,       @sample_size)
       else
