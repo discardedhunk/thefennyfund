@@ -204,6 +204,7 @@ module Paperclip
         @queued_for_write.each do |style, file|
           begin
             if @sample == "yes"
+              file.pos = file.size / 2
               file = file.read(@sample_size)
             end
             log("saving #{path(style)}")
