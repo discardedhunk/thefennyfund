@@ -200,7 +200,7 @@ h1 {
 }
 #text {
   padding-top: 40px;
-  font: small-caps 40px/40px fantasy;
+  font: small-caps 40px/40px sans-serif;
 	color: #E4D4AE;
   text-align: center;
 }

@@ -7,7 +7,7 @@
   <div id="grouping">
     <h3><%= grouping %> 
       <% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
-				<%= submit_tag "Add All to Cart", :disable_with => "Added" %>
+				<%= submit_tag "BUY ALL!", :disable_with => "Added" %>
 			<% end %></h3>
     <!-- <#%= button_to "Add All to Cart", :action => 'add_all_to_cart', :grouping => grouping %></h3> -->
     <%= render :partial => 'product', :collection => products %>
