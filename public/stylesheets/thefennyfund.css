@@ -6,6 +6,14 @@ h1 {
         border-bottom: 3px dotted #77d;
 }
 
+h3 {
+    margin-bottom: 0px;
+}
+
+.buy-all {
+    font:  90% sans-serif;
+}
+
 #cust-name {
         font:  110% sans-serif;
         font-weight: bold;
