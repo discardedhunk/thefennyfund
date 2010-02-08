@@ -4,7 +4,7 @@
 <script type="text/javascript" src="/javascripts/soundmanager2-rails.js"></script>
 
 <% @products.group_by(&:grouping).each do |grouping, products| %>
-  <div id="grouping">
+  <div id="<%= grouping %>">
     <h3><%= grouping %></h3><% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
 				<%= submit_tag "BUY ALL!", :disable_with => "Added", :class => "buy-all" %>
 			<% end %>
