@@ -215,8 +215,8 @@ h1 {
 #main { 
 	margin-left: 13em; 
 	padding-top: 2ex;
-	padding-left: 2em; 
-	background: #FFFFEC;
+	padding-left: 2em;
+	background-color: #FFFFEC;
   font-family: sans-serif;
 }
 #side { 

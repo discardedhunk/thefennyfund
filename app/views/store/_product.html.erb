@@ -16,10 +16,8 @@
         <%= link_to link.name, link.url, :popup => true %>&nbsp;
       <% end %>
       <% if product.music_sample.url != nil %>
-        <div class="play-sample-line">
-          <%  @sounds.push([product.id, product.music_sample.url]) %>
-          <div> Play Sample: <%= toggle_sound product.id %></div>
-        </div>
+        <%  @sounds.push([product.id, product.music_sample.url]) %>
+        <div class="sample"> Play Sample: <%= toggle_sound product.id %></div>
       <% end %>
     <% end %>
 		<div class="price-line">

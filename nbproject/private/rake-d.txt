@@ -42,6 +42,7 @@ doc\:plugins=Generate documentation for all installed plugins
 doc\:plugins\:action_mailer_tls=Generate documentation for the action_mailer_tls plugin
 doc\:plugins\:annotate_models=Generate documentation for the annotate_models plugin
 doc\:plugins\:paperclip=Generate documentation for the paperclip plugin
+doc\:plugins\:soundmanager2=Generate documentation for the soundmanager2 plugin
 doc\:rails=Build the RDOC HTML Files
 doc\:reapp=Force a rebuild of the RDOC files
 doc\:rerails=Force a rebuild of the RDOC files

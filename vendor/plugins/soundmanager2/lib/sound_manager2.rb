@@ -18,7 +18,7 @@ module SoundManager2
     # #initialize_sounds (or indirectly via #initialize_sound_manager) or else
     # no sound will play.
     def toggle_sound(sound_id)
-      link_to_function image_tag("SoundManager2/play-control.gif", :border => 0), "toggle_sound('#{sound_id}')", :id => "#{sound_id}"
+      link_to_function image_tag("SoundManager2/play-control.gif", :border => 0), "toggle_sound('s#{sound_id}')", :id => "s#{sound_id}"
     end
     
     # A convenience method to initialize the SoundManager2 and setup a list of sounds
@@ -93,7 +93,7 @@ module SoundManager2
     def onload_function
       output = "soundManager.onload = function() {\n"
       @sounds.each do |sound|
-        output += %Q{\tsoundManager.createSound({id: "#{sound.id}", url: "#{sound.url}", onfinish: function() \{toggle_sound\("#{sound.id}"\);\}});\n}
+        output += %Q{\tsoundManager.createSound({id: "s#{sound.id}", url: "#{sound.url}", onfinish: function() \{toggle_sound\("s#{sound.id}"\);\}});\n}
       end
       
       output += "}"

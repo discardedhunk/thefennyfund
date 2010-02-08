@@ -5,10 +5,10 @@
 
 <% @products.group_by(&:grouping).each do |grouping, products| %>
   <div id="grouping">
-    <h3><%= grouping %> 
+    <h3><%= grouping %></h3>
       <% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
 				<%= submit_tag "BUY ALL!", :disable_with => "Added" %>
-			<% end %></h3>
+			<% end %>
     <!-- <#%= button_to "Add All to Cart", :action => 'add_all_to_cart', :grouping => grouping %></h3> -->
     <%= render :partial => 'product', :collection => products %>
   </div>
