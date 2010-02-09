@@ -8,7 +8,7 @@
     <td>
       <div id="<%= grouping.gsub(" ", "") %>">
         <h3><%= grouping -%></h3><% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
-              <%= submit_tag "GET THEM ALL!", :disable_with => "Added", :class => "buy-all" %>
+              <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
             <% end %>
       </div>
     </td>
