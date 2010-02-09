@@ -2,14 +2,29 @@
 
 <script type="text/javascript" src="/javascripts/soundmanager2.js"></script>
 <script type="text/javascript" src="/javascripts/soundmanager2-rails.js"></script>
-
+<table>
 <% @products.group_by(&:grouping).each do |grouping, products| %>
-  <div id="<%= grouping.gsub(" ", "") %>">
-    <h3><%= grouping -%></h3><% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
-          <%= submit_tag "BUY ALL!", :disable_with => "Added", :class => "buy-all" %>
-        <% end %>
-    <%= render :partial => 'product', :collection => products %>
-  </div>
+  <tr>
+    <td>
+      <div id="<%= grouping.gsub(" ", "") %>">
+        <h3><%= grouping -%></h3><% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
+              <%= submit_tag "BUY ALL!", :disable_with => "Added", :class => "buy-all" %>
+            <% end %>
+      </div>
+    </td>
+  </tr>
+  <% count = 0 %>
+    <% for product in products %>
+      <% if count == 0 %>
+        <tr>
+      <% end %>
+      <td class="td-entry"><%= render :partial => 'product', :object => product %></td>
+      <% count += 1 %>
+      <% if count == 3 %>
+        <% count = 0 %>
+        </tr>
+      <% end %>
+    <% end %>
 <% end %>
-
+</table>
 <%= initialize_sounds(@sounds) %>
