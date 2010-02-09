@@ -7,16 +7,18 @@ h1 {
 }
 
 h3 {
-    margin-bottom: 0px;
+    margin-bottom: 4px;
 }
 
 .buy-all {
-    font:  90% sans-serif;
+    font-size:  12pt;
+    font-family: sans-serif;
 }
 
 #cust-name {
-        font:  110% sans-serif;
+        font-family: sans-serif;
         font-weight: bold;
+        font-size: 14pt;
         color: #226;
         border-bottom: 3px dotted #77d;
 }
@@ -62,11 +64,11 @@ h3 {
 }
 
 #product-list .list-line-even {
-  background:   #e0f8f8;
+  background-color:   #e0f8f8;
 }
 
 #product-list .list-line-odd {
-  background:   #f8b0f8;
+  background-color:   #f8b0f8;
 }
 
 /* An entry in the store catalog */
@@ -159,7 +161,7 @@ h3 {
 
 .fieldWithErrors {
   padding: 2px;
-  background-color: #EEFFEE;
+  background-color: #eeffee;
   display: inline;
 }
 
@@ -199,60 +201,58 @@ h3 {
 
 /* Styles for main page */
 #banner { 
-	/*background-color: #E4D4AE;*/
   background-color: #141;
-
 	padding-top: 1px;
-	padding-bottom: 70px;
-	/*border-bottom: 1px solid;*/
+	padding-bottom: 4.4em;
 }
 #text {
-  padding-top: 40px;
-  font: small-caps 40px/40px sans-serif;
+  padding-top: 1em;
+  font: 30pt sans-serif;
 	color: #E4D4AE;
   text-align: center;
 }
 #banner img { 
 	float: left;
   width: 20em;
-  height: 150px;
+  height: 20.4ex;
 }
-#columns { 
-	background: #E4D4AE;
+#columns {
+	background-color: #e4d4ae;
 }
-#main { 
-	margin-left: 13em; 
-	padding-top: 2ex;
-	padding-left: 2em;
-	background-color: #FFFFEC;
-  font-family: sans-serif;
-}
-#side { 
+
+#side {
 	float: left; 
-	padding-top: 4ex;
+	padding-top: 25px;
 	padding-left: 1em;
-	padding-bottom: 1em; 
+	padding-bottom: 1em;
 	width: 12em; 
-	/*background: #141;
-	color: #bfb;*/
-  background: #E4D4AE;
+  background-color: #e4d4ae; 
   color: #141;
   font-family: sans-serif;
 }
-#side a { 
+
+#side a {
 	color: #283329;
 	font-size:large;
-  font-family: helvetica;
 }
+
+#main {
+	margin-left: 13em;
+	padding-top: 5px;
+	padding-left: 2em;
+	background-color: #FCF6CF;
+  font-family: sans-serif;
+}
+
 /* Styles for order form */
 
 .fennyfund-form fieldset {
-	background: #efe;
+	background-color: #EFE;
 }
 
 .fennyfund-form legend {
-	color: #dfd; 
-	background: #141; 
+	color: #dfd;
+	background-color: #141;
 	font-family: sans-serif; 
 	padding: 0.2em 1em;
 }

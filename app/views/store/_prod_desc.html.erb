@@ -1,0 +1,12 @@
+<div id="prod_desc_<%= product.id %>" class="popup popup_draghandle" style="display:none">
+
+<%= product.description %><br/>
+<% if product.category == "music" && product.music_file_name != nil %>
+    Links:<% product.band_links.each do |link| %>
+      <%= link_to link.name, link.url, :popup => true %>&nbsp;
+    <% end %>
+<% end %>
+
+</div>
+
+<%= javascript_tag "new Popup('prod_desc_#{product.id}','prod_desc_link_#{product.id}')" %>

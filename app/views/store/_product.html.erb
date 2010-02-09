@@ -1,31 +1,28 @@
-
-	<div class="entry">
-		<% form_remote_tag :url => { :action => :add_to_cart, :id => product } do %>
-    		<%= image_submit_tag(product.photo.url,
-									:alt => product.title,
-									:title => "Add to cart",
-                                    :class => "img") %>
-		<% end %>
-    <% if product.category == "music" %>
-      <h3><%=h product.band_name %></h3>
+<div class="entry">
+  <% form_remote_tag :url => { :action => :add_to_cart, :id => product } do %>
+      <%= image_submit_tag(product.photo.url,
+                :alt => product.title,
+                :title => "Add to cart",
+                                  :class => "img") %>
+  <% end %>
+  <% if product.category == "music" %>
+    <h3><%= product.band_name %></h3>
+  <% end %>
+  <%= product.title %><br/><br/>
+  <span id="prod_desc_link_<%= product.id %>" class="popup_link">More Info</span><br /><br />
+  <%= render :partial => 'prod_desc', :locals => {:product => product}  %>
+  
+  <% if product.category == "music" && product.music_file_name != nil %>
+    <% if product.music_sample.url != nil %>
+      <% @sounds.push([product.id, product.music_sample.url]) %>
+      <div id="sample">Sample: <%= toggle_sound product.id %></div>
     <% end %>
-    <%=h product.title %><br/><br/>
-		<%=h product.description %><br/>
-    <% if product.category == "music" && product.music_file_name != nil %>
-      Links:<% product.band_links.each do |link| %>
-        <%= link_to link.name, link.url, :popup => true %>&nbsp;
-      <% end %>
-      <% if product.music_sample.url != nil %>
-        <%  @sounds.push([product.id, product.music_sample.url]) %>
-        <div class="sample">Sample: <%= toggle_sound product.id %></div>
-      <% end %>
+  <% end %>
+  <div id="price-line">
+    <span class="price"><%= number_to_currency(product.price) %></span>
+    <% form_remote_tag :url => { :action => 'add_to_cart',
+                   :id => product } do %>
+      <%= submit_tag "Add to Cart", :disable_with => "Added" %>
     <% end %>
-		<div class="price-line">
-			<span class="price"><%= number_to_currency(product.price) %></span>
-			<% form_remote_tag :url => { :action => 'add_to_cart',
-										 :id => product } do %>
-				<%= submit_tag "Add to Cart", :disable_with => "Added" %>
-			<% end %>
-		</div>
-	</div>
-
+  </div>
+</div>
