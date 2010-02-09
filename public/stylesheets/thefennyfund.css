@@ -131,6 +131,7 @@ h3 {
     width: 350px;
     height: 200px;
     vertical-align: top;
+    padding-left: 3em;
 }
 
 /* Styles for the cart in the sidebar */
