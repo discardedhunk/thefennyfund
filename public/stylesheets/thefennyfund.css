@@ -86,6 +86,7 @@ h3 {
 
 #store .entry .img {
   width: 100px;
+  height: 100px;
   float: left;
   text-decoration: none;
   border: 0;
