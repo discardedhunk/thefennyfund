@@ -110,7 +110,7 @@ h3 {
 }
 
 #store .entry .rightcol {
-    position: relative;
+    position: absolute;
     top: 0px;
     left: 110px;
     width: 60%;
@@ -157,7 +157,8 @@ h3 {
     width: 410px;
     height: 175px;
     vertical-align: top;
-    padding-left: 2em
+    padding-left: 2em;
+    position: relative;
 }
 
 /* Styles for the cart in the sidebar */
