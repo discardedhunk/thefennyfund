@@ -104,7 +104,7 @@ h3 {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 180px;
+    width: 50%;
     height: 150px;
     padding-bottom: 5px
 }
@@ -113,7 +113,7 @@ h3 {
     position: relative;
     top: 0px;
     left: 110px;
-    width: 220px;
+    width: 50%;
     height: 150px;
 }
 

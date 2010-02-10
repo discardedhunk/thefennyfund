@@ -7,13 +7,13 @@ div.popup {
   padding: 5px;
   background-color: white;
   /* The following properties should not be changed */
-  position: absolute;
+  position: static;
 }
 
 #popup_overlay {
   background-color: whitesmoke;
   /* The following properties should not be changed */
-  position: absolute;
+  position: static;
   top: 0;
   left: 0;
   width: 100%;

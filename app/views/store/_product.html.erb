@@ -1,24 +1,24 @@
 <div class="entry">
   <div class="leftcol">
-      <% form_remote_tag :url => { :action => :add_to_cart, :id => product } do %>
-          <%= image_submit_tag(product.photo.url,
-                    :alt => product.title,
-                    :title => "Add to cart",
-                                      :class => "img") %>
+    <% form_remote_tag :url => { :action => :add_to_cart, :id => product } do %>
+        <%= image_submit_tag(product.photo.url,
+                  :alt => product.title,
+                  :title => "Add to cart",
+                                    :class => "img") %>
+    <% end %>
+    <% if product.category == "music" && product.music_file_name != nil %>
+      <% if product.music_sample.url != nil %>
+        <% @sounds.push([product.id, product.music_sample.url]) %>
+        <div class="sample">Sample: <%= toggle_sound product.id %></div>
       <% end %>
-      <% if product.category == "music" && product.music_file_name != nil %>
-        <% if product.music_sample.url != nil %>
-          <% @sounds.push([product.id, product.music_sample.url]) %>
-          <div class="sample">Sample: <%= toggle_sound product.id %></div>
-        <% end %>
-      <% end %>
-          <div class="price-line">
+    <% end %>
+    <div class="price-line">
 
-        <span class="price"><%= number_to_currency(product.price) %></span>
-        <% form_remote_tag :url => { :action => 'add_to_cart',
-                       :id => product } do %>
-          <%= submit_tag "Add to Cart", :disable_with => "Added" %>
-        <% end %>
+      <span class="price"><%= number_to_currency(product.price) %></span>
+      <% form_remote_tag :url => { :action => 'add_to_cart',
+                     :id => product } do %>
+        <%= submit_tag "Add to Cart", :disable_with => "Added" %>
+      <% end %>
 
     </div>
   </div>
@@ -29,7 +29,5 @@
     <%= product.title %><br/><br/>
     <span id="prod_desc_link_<%= product.id %>" class="popup_link">More Info</span><br /><br />
     <%= render :partial => 'prod_desc', :locals => {:product => product}  %>
-
-    
   </div>
 </div>
