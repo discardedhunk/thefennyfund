@@ -21,6 +21,7 @@
         <div class="sample">Sample: <%= toggle_sound product.id %></div>
       <% end %>
     <% end %>
+        <br></br>
     <div class="price-line">
 
       <span class="price"><%= number_to_currency(product.price) %></span>
@@ -31,5 +32,6 @@
 
     </div>
   </div>
+  <%= render :partial => 'prod_desc', :locals => {:product => product}  %>
 </div>
 
