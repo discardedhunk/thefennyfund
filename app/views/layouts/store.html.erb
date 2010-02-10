@@ -19,8 +19,8 @@
 	</div> 
 	<div id="columns">
 		<div id="side">
-			<% if @cart %>
-				<% hidden_div_if(@cart.items.empty?, :id => "cart") do %> 
+      <% if @cart %>
+				<% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
 					<%= render(:partial => "cart", :object => @cart) %>
 				<% end %>
 			<% end %>
@@ -41,6 +41,7 @@
 				<%= link_to 'Logout', '/admin/logout' %>
         <br />
 			<% end %>
+        
       <% if session[:customer_id] %>
 				<br />
         Customer Options:<br />
@@ -50,6 +51,7 @@
         <%= link_to 'Logout',	logout_url %><br />
 				
 			<% end %>
+      
 		</div> 
 		<div id="main">
       <% if session[:customer_name] %>

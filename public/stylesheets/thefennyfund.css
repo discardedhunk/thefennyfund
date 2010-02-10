@@ -80,23 +80,13 @@ h3 {
   overflow: hidden;
   margin-top: 1em;
   border-bottom: 1px dotted #77d;
+  position: relative;
 }
 
 #store  .title {
   font-size: 120%;
   font-family: sans-serif;
 }
-
-#store .entry .img {
-  width: 100px;
-  height: 100px;
-  float: left;
-  text-decoration: none;
-  border: 0;
-  padding-right: 10px;
-  padding-bottom: 10px;
-}
-
 
 #store .entry h3 {
  margin-top: 0;
@@ -109,10 +99,44 @@ h3 {
  margin-bottom: 0.8em; 
 }
 
-#store .entry .price-line {
- clear: both;
+#store .entry .leftcol {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 150px;
 }
 
+#store .entry .rightcol {
+    position: relative;
+    top: 0px;
+    left: 110px;
+    width: 150px;
+    height: 150px;
+}
+
+#store .entry .leftcol .img {
+  position: absolute;
+  top: 0px;
+  width: 100px;
+  height: 100px;
+  float: left;
+  text-decoration: none;
+  border: 0;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+#store .entry .leftcol .price-line {
+    position: relative;
+    clear: both;
+    top: 110px;
+}
+
+#store .entry .leftcol .sample {
+    position: relative;
+    top: 105px;
+}
 #store .entry .add-to-cart {
   position: relative;
 }
@@ -143,6 +167,7 @@ h3 {
 	border-top:	1px dotted #595; 
 	border-bottom: 1px dotted #595; 
 	margin-bottom: 10px;
+  overflow: auto;
 }
 #cart table a{
     font-size: 14px;
@@ -236,10 +261,14 @@ h3 {
 	padding-top: 25px;
 	padding-left: 1em;
 	padding-bottom: 1em;
-	width: 12em; 
+	width: 12em;
   background-color: #e4d4ae; 
   color: #141;
   font-family: sans-serif;
+  bottom: 20px;
+  top: 165px;
+  overflow: auto;
+  
 }
 
 #side a {
