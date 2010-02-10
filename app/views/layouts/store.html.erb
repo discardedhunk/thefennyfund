@@ -6,9 +6,18 @@
 	<title>The Fenny Fund Online Store</title>
 	<%= stylesheet_link_tag "thefennyfund", :media => "all" %>
 	<%= javascript_include_tag :defaults %>
-  <%= stylesheet_link_tag 'popup.css', :media => "all" %>
-  <%= javascript_include_tag 'popup.js' %>
+  <%= stylesheet_link_tag 'facebox.css', :media => "all" %>
+  <%= javascript_include_tag 'jquery-1.2.1.js' %>
+  <%= javascript_include_tag 'facebox.js' %>
   
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loading_image : '/images/loading.gif',
+        close_image   : '/images/closelabel.gif'
+      })
+    })
+  </script>
 </head> 
 <body id="store">
 	<div id="banner">

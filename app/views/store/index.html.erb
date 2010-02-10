@@ -2,8 +2,6 @@
 <p>When the idea for the Fenny Fund CD began it was to focus on local artists, New York and maybe even New Jersey. Turns out musicians are a big hearted lot and pretty soon songs were coming in from Boston, Phoenix, Toronto and Nashville. The Fenny Fund thanks these generous souls for their song donations and is in awe of their musical talent.
 Enjoy.</p>
 
-<script type="text/javascript" src="/javascripts/soundmanager2.js"></script>
-<script type="text/javascript" src="/javascripts/soundmanager2-rails.js"></script>
 <table>
 <% @products.group_by(&:grouping).each do |grouping, products| %>
   <tr>
@@ -20,7 +18,7 @@ Enjoy.</p>
       <% if count == 0 %>
         <tr>
       <% end %>
-          <td class="td-entry"><%= render :partial => 'product', :object => product %></td>
+          <td><%= render :partial => 'product', :object => product %></td>
       <% count += 1 %>
       <% if count == 3 %>
         <% count = 0 %>

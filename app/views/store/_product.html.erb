@@ -6,6 +6,15 @@
                   :title => "Add to cart",
                                     :class => "img") %>
     <% end %>
+  </div>
+  <div class="nametitle">
+    <% if product.category == "music" %>
+      <h3><%= product.band_name %></h3>
+    <% end %>
+    <%= product.title %><br/>
+    <a href="#prod_desc_<%= product.id %>" rel="facebox">More Info</a>
+  </div>
+  <div class="rightcol">
     <% if product.category == "music" && product.music_file_name != nil %>
       <% if product.music_sample.url != nil %>
         <% @sounds.push([product.id, product.music_sample.url]) %>
@@ -22,12 +31,5 @@
 
     </div>
   </div>
-  <div class="rightcol">
-    <% if product.category == "music" %>
-      <h3><%= product.band_name %></h3>
-    <% end %>
-    <%= product.title %><br/><br/>
-    <span id="prod_desc_link_<%= product.id %>" class="popup_link">More Info</span><br /><br />
-    <%= render :partial => 'prod_desc', :locals => {:product => product}  %>
-  </div>
 </div>
+
