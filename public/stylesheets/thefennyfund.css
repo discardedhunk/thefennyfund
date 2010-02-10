@@ -103,15 +103,16 @@ h3 {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 200px;
+    width: 180px;
     height: 150px;
+    padding-bottom: 5px
 }
 
 #store .entry .rightcol {
     position: relative;
     top: 0px;
     left: 110px;
-    width: 200px;
+    width: 220px;
     height: 150px;
 }
 
@@ -141,7 +142,7 @@ h3 {
   position: relative;
 }
 
-#store .entry  .price {
+#store .entry .leftcol .price {
   color: #141;
   font-weight: bold;
   margin-right: 2em; 
