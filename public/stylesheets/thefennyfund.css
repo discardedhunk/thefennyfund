@@ -81,6 +81,7 @@ h3 {
   margin-top: 1em;
   border-bottom: 1px dotted #77d;
   position: relative;
+  height: 165px;
 }
 
 #store  .title {
@@ -156,7 +157,7 @@ h3 {
     width: 410px;
     height: 175px;
     vertical-align: top;
-    padding-left: 3em;
+    padding-left: 2em
 }
 
 /* Styles for the cart in the sidebar */
