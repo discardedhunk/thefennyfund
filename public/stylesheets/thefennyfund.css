@@ -1,5 +1,15 @@
 /* Global styles */
 
+body {
+		margin:0;
+		padding:0;
+		border:0;			/* This removes the border around the viewport in old versions of IE */
+		width:100%;
+		min-width:600px;		/* Minimum width of layout - remove line if not required */
+						/* The min-width property does not work in old versions of Internet Explorer */
+	}
+
+
 h1 {
         font:  150% sans-serif;
         color: #226;
@@ -76,14 +86,18 @@ h3 {
 
 /* An entry in the store catalog */
 
-#store  .entry {
-  top: 0;
-  left: 2em;
-  overflow: hidden;
-  margin-top: 1em;
-  
-  height: 180px;
-  width: 350px;
+.td_entry {
+    position: relative;
+    display: inline-table;
+    padding-left: 1em;
+}
+
+.entry {
+    top: 0;
+    overflow: hidden;
+    margin-top: 1em;
+    height: 180px;
+    width: 350px;
     vertical-align: top;
     position: relative;
     border-bottom: 1px dotted #77d;
@@ -166,15 +180,9 @@ h3 {
 #store .entry form, #store .entry form div {
 	display: inline;
 }
-/*
-.td-entry {
-    width: 410px;
-    height: 175px;
-    vertical-align: top;
-    padding-left: 2em;
-    position: relative;
-}
-*/
+
+
+
 /* Styles for the cart in the sidebar */
 #cart, #cart table { 
 	font-size: 15px;
