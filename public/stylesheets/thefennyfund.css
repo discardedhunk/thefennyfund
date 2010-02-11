@@ -89,7 +89,8 @@ h3 {
 .td_entry {
     position: relative;
     display: inline-table;
-    padding-left: 1em;
+    padding-left: 0.5em;
+    left: 1%;
 }
 
 .entry {
@@ -97,7 +98,7 @@ h3 {
     overflow: hidden;
     margin-top: 1em;
     height: 180px;
-    width: 350px;
+    width: 325px;
     vertical-align: top;
     position: relative;
     border-bottom: 1px dotted #77d;
@@ -138,6 +139,7 @@ h3 {
 #store .entry .nametitle {
     position: absolute;
     top: 105px;
+    font-size: 100%;
 }
 
 #store .entry .rightcol {
