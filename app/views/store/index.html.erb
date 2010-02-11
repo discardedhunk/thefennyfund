@@ -2,29 +2,29 @@
 When the idea for the Fenny Fund CD began it was to focus on local artists, New York and maybe even New Jersey. Turns out musicians are a big hearted lot and pretty soon songs were coming in from Boston, Phoenix, Toronto and Nashville. The Fenny Fund thanks these generous souls for their song donations and is in awe of their musical talent.
 Enjoy.
 
-<table>
+<div class="prod_table">
 <% @products.group_by(&:grouping).each do |grouping, products| %>
-  <tr>
-    <td>
+  <div class="group_row">
+    <div class="group_cell">
       <div id="<%= grouping.gsub(" ", "") %>">
         <h3><%= grouping -%></h3><% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
               <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
             <% end %>
       </div>
-    </td>
-  </tr>
+    </div>
+  </div>
   <% count = 0 %>
     <% for product in products %>
       <% if count == 0 %>
-        <tr>
+         <div class="entry_row">
       <% end %>
-          <td class="td_entry"><%= render :partial => 'product', :object => product %></td>
+           <div class="entry_cell"><%= render :partial => 'product', :object => product %></div>
       <% count += 1 %>
       <% if count == 3 %>
         <% count = 0 %>
-        </tr>
+        </div>
       <% end %>
     <% end %>
 <% end %>
-</table>
+</div>
 <%= initialize_sounds(@sounds) %>

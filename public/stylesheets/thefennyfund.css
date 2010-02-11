@@ -86,15 +86,26 @@ h3 {
 
 /* An entry in the store catalog */
 
-.td_entry {
+.prod_table {
     position: relative;
-    display: inline-table;
-    padding-left: 0.5em;
-    left: 1%;
+    display: table;
 }
 
-.entry {
+.entry_row {
+    display: table-row;
+    position: relative;
+    width: 100%;
+}
+
+.entry_cell {
+    position: relative;
+    display: inline-block;
+    padding-left: 1em;
+}
+
+.entry_cell .entry {
     top: 0;
+    padding-right: 1em;
     overflow: hidden;
     margin-top: 1em;
     height: 180px;
@@ -102,6 +113,7 @@ h3 {
     vertical-align: top;
     position: relative;
     border-bottom: 1px dotted #77d;
+    
 }
 
 #store .entry .popup_link {
@@ -116,18 +128,18 @@ h3 {
   font-family: sans-serif;
 }
 
-#store .entry h3 {
+.entry_cell .entry h3 {
  margin-top: 0;
  margin-bottom: 2px;
  color: #227;
 }
 
-#store .entry p {
+.entry_cell .entry p {
  margin-top: 0.5em; 
  margin-bottom: 0.8em; 
 }
 
-#store .entry .leftcol {
+.leftcol {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -136,21 +148,22 @@ h3 {
     padding-bottom: 5px
 }
 
-#store .entry .nametitle {
+.nametitle {
     position: absolute;
-    top: 105px;
+    top: 110px;
     font-size: 100%;
 }
 
-#store .entry .rightcol {
+.rightcol {
     position: absolute;
     top: 0px;
     left: 110px;
     width: 30%;
     height: 100px;
+    display: table-column;
 }
 
-#store .entry .leftcol .img {
+.img {
   position: absolute;
   top: 0px;
   width: 100px;
@@ -162,18 +175,18 @@ h3 {
   padding-bottom: 10px;
 }
 
-#store .entry .rightcol .price-line {
+.rightcol .price-line {
     position: relative;
 }
 
-#store .entry .rightcol .sample {
+.rightcol .sample {
     position: relative;
 }
-#store .entry .add-to-cart {
+.add-to-cart {
   position: relative;
 }
 
-#store .entry .rightcol .price {
+.rightcol .price {
   color: #141;
   font-weight: bold;
   margin-right: 10px;
