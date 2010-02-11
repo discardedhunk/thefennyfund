@@ -26,7 +26,7 @@ module SoundManager2
     # of the following format:  [["sound_1_id", "sound_1_url"], ["sound_2_id", "sound_2_url"]].
     # Passing _debug_ true will create a SoundManager2 console on your page and visibly log all
     # SoundManager2 events.  (There are plenty!)
-    def initialize_sounds(sound_array, debug=true)
+    def initialize_sounds(sound_array, debug=false)
       initialize_sound_manager(debug) do |soundman|
         sound_array.each do |id, url| 
           soundman.create_sound(id, url)
