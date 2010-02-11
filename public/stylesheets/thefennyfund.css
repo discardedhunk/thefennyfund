@@ -88,11 +88,20 @@ h3 {
 
 .prod_table {
     position: relative;
-    display: table;
+    display: block;
+}
+
+.group_row {
+    top: 0px;
+    left: 0px;
+    position: static;
+}
+
+.group_cell {
+    position: static;
 }
 
 .entry_row {
-    display: table-row;
     position: relative;
     width: 100%;
 }
