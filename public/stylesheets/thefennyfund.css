@@ -87,29 +87,31 @@ h3 {
 /* An entry in the store catalog */
 
 .prod_table {
-    position: relative;
+    position: static;
     display: block;
 }
 
 .group_row {
-    top: 0px;
-    left: 0px;
-    position: static;
+    
 }
 
 .group_cell {
-    position: static;
+    
 }
 
 .entry_row {
-    position: relative;
     width: 100%;
 }
 
 .entry_cell {
-    position: relative;
+    
     display: inline-block;
+    display: -moz-inline-stack;
+    zoom: 1;
+    *display: inline;
+    _height: 180px;
     padding-left: 1em;
+    postion: relative;
 }
 
 .entry_cell .entry {
