@@ -104,7 +104,7 @@ h3 {
 }
 
 .entry_cell {
-    padding-right: 1em;
+    padding-left: 1em;
     display: inline-block;
     display: -moz-inline-stack;
     zoom: 1;

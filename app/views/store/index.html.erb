@@ -13,21 +13,9 @@ Enjoy.
       </div>
     </div>
   </div>
-  <% count = 0 %>
     <% for product in products %>
-      <% if count == 0 %>
-         <div class="entry_row">
-      <% end %>
            <div class="entry_cell"><%= render :partial => 'product', :object => product %></div>
-      <% count += 1 %>
-      <% if count == 3 %>
-        <% count = 0 %>
-        </div>
-      <% end %>
     <% end %>
-  <% if count < 3 %>
-    </div>
-  <% end %>
 <% end %>
 </div> <!-- END PROD_TABLE -->
 <%= initialize_sounds(@sounds) %>
