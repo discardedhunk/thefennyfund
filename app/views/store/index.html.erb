@@ -25,6 +25,9 @@ Enjoy.
         </div>
       <% end %>
     <% end %>
+  <% if count < 3 %>
+    </div>
+  <% end %>
 <% end %>
 </div> <!-- END PROD_TABLE -->
 <%= initialize_sounds(@sounds) %>
