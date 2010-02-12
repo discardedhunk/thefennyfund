@@ -198,12 +198,15 @@ h3 {
   margin-right: 10px;
 }
 
-.desc_text {
+.desc_text, .desc_links {
     padding-left: 15px;
     padding-right: 15px;
-    text-align: justify;
     font-family: sans-serif;
     font-size: 100%;
+}
+
+.desc_text {
+    text-align: justify;
 }
 #store .entry form, #store .entry form div {
 	display: inline;
