@@ -10,7 +10,6 @@ class StoreController < ApplicationController
     @current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
     @products = Product.find_products_for_sale
     @sounds = []
-    puts "\nPRODUCTS= #{@products}\n"
     @display_count = nil
     @count = increment_count
     if @count > 5
