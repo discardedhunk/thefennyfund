@@ -1,6 +1,6 @@
 <div id="prod_desc_<%= product.id %>" class="facebox" style="display:none">
   <p>
-    <%= product.description %><br/><br/>
+    <%=h product.description %><br/><br/>
     <% if product.category == "music" && product.band_links != nil %>
     Links:
         <% product.band_links.each do |link| %>
