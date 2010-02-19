@@ -39,9 +39,11 @@
 			<%= link_to 'Customer Login',	login_url %><br />
       <br/>
       Product Categories:
-      <% for category in @categories %>
-        <%= link_to category.name.titleize, root_url(:category => category.name) %><br/>
-			<% end %>
+      <% if @categories != nil %>
+        <% for category in @categories %>
+          <%= link_to category.name.titleize, root_url(:category => category.name) %><br/>
+        <% end %>
+      <% end %>
         
 			<% if session[:user_id] %>
 				<br />
