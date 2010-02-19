@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100219044212) do
+ActiveRecord::Schema.define(:version => 20100219222658) do
 
   create_table "band_links", :force => true do |t|
     t.integer  "product_id", :null => false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20100219044212) do
 
   create_table "groups", :force => true do |t|
     t.string   "name",                                     :null => false
-    t.decimal  "discount",   :precision => 2, :scale => 2, :null => false
+    t.decimal  "discount",   :precision => 3, :scale => 3, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
