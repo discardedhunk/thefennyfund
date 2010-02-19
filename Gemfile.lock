@@ -1,0 +1,43 @@
+--- 
+dependencies: 
+  pg: 
+    group: 
+    - :default
+    version: = 0.8.0
+  rails: 
+    group: 
+    - :default
+    version: = 2.2.2
+  aws-s3: 
+    group: 
+    - :default
+    version: = 0.6.2
+specs: 
+- xml-simple: 
+    version: 1.0.12
+- activesupport: 
+    version: 2.2.2
+- builder: 
+    version: 2.1.2
+- actionpack: 
+    version: 2.2.2
+- actionmailer: 
+    version: 2.2.2
+- mime-types: 
+    version: "1.16"
+- aws-s3: 
+    version: 0.6.2
+- rake: 
+    version: 0.8.7
+- pg: 
+    version: 0.8.0
+- activerecord: 
+    version: 2.2.2
+- activeresource: 
+    version: 2.2.2
+- rails: 
+    version: 2.2.2
+hash: 07a7a7638efe4ec322c736f85631f2d862837e91
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
