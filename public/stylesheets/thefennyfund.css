@@ -91,6 +91,8 @@ h3 {
 
 .group_row {
     left: 0;
+    margin-top: 20px;
+    border-top: 1px groove #77d;
 }
 
 .group_cell {

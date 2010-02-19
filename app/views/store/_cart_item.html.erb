@@ -4,9 +4,15 @@
 <% else %>
 	<tr id="<%= cart_item.id %>"
 <% end %>
+  
     <td>
-      <%= link_to_remote "+", {:url => { :action => :add_to_cart, :id => cart_item.product}}, {:href => url_for(:action => :add_to_cart, :id => cart_item.product) }  %>
-      <%= link_to_remote "-", {:url => { :action => :remove_from_cart, :id => cart_item.product}}, {:href => url_for(:action => :remove_from_cart, :id => cart_item.product) }  %>
+      <% if cart_item.group %>
+        <%= link_to_remote "+", {:url => { :action => :add_to_cart, :group => cart_item.group}}, {:href => url_for(:action => :add_to_cart, :group => cart_item.group) } %>
+        <%= link_to_remote "-", {:url => { :action => :remove_from_cart, :group => cart_item.group}}, {:href => url_for(:action => :remove_from_cart, :group => cart_item.group) }  %>
+      <% else %>
+        <%= link_to_remote "+", {:url => { :action => :add_to_cart, :id => cart_item.product}}, {:href => url_for(:action => :add_to_cart, :id => cart_item.product) } %>
+        <%= link_to_remote "-", {:url => { :action => :remove_from_cart, :id => cart_item.product}}, {:href => url_for(:action => :remove_from_cart, :id => cart_item.product) }  %>
+      <%end%>
     </td>
 	<td><%= cart_item.quantity %>&times;</td> 
 	<td><%=h cart_item.title %></td> 

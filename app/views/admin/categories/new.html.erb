@@ -1,0 +1,19 @@
+<div class="fennyfund-form">
+<% form_for([:admin, @category]) do |f| %>
+	<%= f.error_messages %>
+	<fieldset> 
+	<legend>Enter Category Details</legend>
+	
+	<div>
+		<%= f.label :name %>:
+		<%= f.text_field :name, :size => 40 %>
+	</div>
+	
+	<div>
+		<%= f.submit "Add Category", :class => "submit" %>
+	</div>
+	
+	</fieldset>
+<% end %>
+	
+</div>

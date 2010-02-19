@@ -7,8 +7,11 @@
   <%=h @order.pay_type %><br/>
   <% if @order.pay_type == "paypal" %>
     <b>PayPal Transaction ID: </b>
-    <%=h @order.pp_tx_id %>
+    <%=h @order.pp_tx_id %><br/>
   <% end %>
+    <br/>
+  <b>Total:</b>
+  <%=h @order.total %>
 </p>
 
 <table id="order_summary" >
@@ -26,7 +29,7 @@
       <td><%= link_to line_item.product.title, product_url(line_item.product_id) %></td>
       <td><%=h line_item.quantity %></td>
       <td><%=h line_item.total_price %></td>
-      <% if line_item.product.category == 'music' %>
+      <% if line_item.product.category.name == 'music' %>
         <td><%= link_to line_item.product.music_file_name, line_item.product.music.get_priv_url %></td>
       <% end %>
     </tr>

@@ -1,0 +1,28 @@
+<div class="fennyfund-form">
+<% form_for([:admin, @group]) do |f| %>
+	<%= f.error_messages %>
+	<fieldset>
+    <legend>Editing Group</legend>
+
+    <div>
+      <%= f.label :name %>:
+      <%= f.text_field :name, :size => 40 %>
+    </div>
+
+    <div>
+      <%= f.label :discount %>:
+      <%= f.text_field :discount %>
+    </div>
+
+    <div>
+      <%= f.submit "Update Group", :class => "update" %>
+    </div>
+
+  </fieldset>
+
+<% end %>
+
+<%= link_to 'Show', admin_group_path(@group) %> |
+<%= link_to 'Back', admin_groups_path %>
+
+</div>

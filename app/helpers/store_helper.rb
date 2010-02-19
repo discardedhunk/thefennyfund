@@ -5,4 +5,5 @@ module StoreHelper
     end
     content_tag("div", attributes, &block)
   end
+
 end

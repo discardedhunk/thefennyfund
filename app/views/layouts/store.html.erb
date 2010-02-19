@@ -37,13 +37,19 @@
 			<%= link_to 'Store Home', root_url %><br />
       <%= link_to 'Register', new_customer_url %><br />
 			<%= link_to 'Customer Login',	login_url %><br />
-     
-			
+      <br/>
+      Product Categories:
+      <% for category in @categories %>
+        <%= link_to category.name.titleize, root_url(:category => category.name) %><br/>
+			<% end %>
+        
 			<% if session[:user_id] %>
 				<br />
         Admin Options:<br />
 				<%= link_to 'Orders',	admin_orders_path %><br />
-				<%= link_to 'Products', admin_products_path %><br />
+        <%= link_to 'Categories', admin_categories_path %><br />
+        <%= link_to 'Groups', admin_groups_path %><br />
+        <%= link_to 'Products', admin_products_path %><br />
         <%= link_to 'Customers',	admin_customers_path	%><br />
 				<%= link_to 'Admin Users',	admin_users_path	%><br />
 				<br />

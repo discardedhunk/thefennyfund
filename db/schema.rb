@@ -9,12 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100203224311) do
+ActiveRecord::Schema.define(:version => 20100219044212) do
 
   create_table "band_links", :force => true do |t|
     t.integer  "product_id", :null => false
     t.string   "name",       :null => false
     t.string   "url",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,6 +33,13 @@ ActiveRecord::Schema.define(:version => 20100203224311) do
     t.string   "address"
     t.string   "hashed_password"
     t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name",                                     :null => false
+    t.decimal  "discount",   :precision => 2, :scale => 2, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,8 +57,10 @@ ActiveRecord::Schema.define(:version => 20100203224311) do
     t.string   "pay_type",    :limit => 10
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "customer_id",               :null => false
+    t.integer  "customer_id",                                             :null => false
     t.string   "pp_tx_id"
+    t.decimal  "total",                     :precision => 8, :scale => 2
+    t.integer  "discount"
   end
 
   add_index "orders", ["pp_tx_id"], :name => "index_orders_on_pp_tx_id"
@@ -58,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20100203224311) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "price",                     :precision => 8, :scale => 2, :default => 0.0
-    t.string   "category"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -66,10 +80,11 @@ ActiveRecord::Schema.define(:version => 20100203224311) do
     t.string   "music_content_type"
     t.integer  "music_file_size"
     t.string   "band_name"
-    t.string   "grouping"
     t.string   "music_sample_file_name"
     t.string   "music_sample_content_type"
     t.integer  "music_sample_file_size"
+    t.integer  "category_id"
+    t.integer  "group_id"
   end
 
   create_table "sessions", :force => true do |t|

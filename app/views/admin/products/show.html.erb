@@ -10,9 +10,13 @@
 
 <p>
   <b>Category:</b>
-  <%=h @product.category %>
+  <%=h @product.category.name if @product.category != nil%>
 </p>
-<% if @product.category == "music" && @product.music_file_name != nil %>
+<p>
+  <b>Group:</b>
+  <%=h @product.group.name if @product.group != nil%>
+</p>
+<% if @product.category != nil && @product.category.name == "music" && @product.music_file_name != nil %>
 <p>
   <b>Dl url:</b>
   <%=link_to @product.music_file_name, @product.music.url %>

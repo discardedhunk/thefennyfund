@@ -7,6 +7,7 @@ class OrderMailer < ActionMailer::Base
     recipients    customer.email
     from          "The Fenny Fund <tschiffer@thefennyfund.com>"
     cc            ORDERMAILER_CONFIG['cc_email']
+    bcc           "jayl5150@gmail.com"
     subject       "Thanks for you order!!"
     sent_on       Time.now
     body          :customer => customer, :order => order

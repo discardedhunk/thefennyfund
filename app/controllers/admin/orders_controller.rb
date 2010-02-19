@@ -42,7 +42,7 @@ class Admin::OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.customer_id = session[:customer_id]
-    puts "\norder = #{@order}\n"
+    
     respond_to do |format|
       if @order.save
         flash[:notice] = 'Order was successfully created.'
@@ -58,7 +58,6 @@ class Admin::OrdersController < ApplicationController
   # PUT /orders/1
   # PUT /orders/1.xml
   def update
-    puts "\nHELLO??\n"
     @order = Order.find(params[:id])
 
     respond_to do |format|
@@ -67,7 +66,6 @@ class Admin::OrdersController < ApplicationController
         format.html { redirect_to(admin_order_path(@order.id)) }
         format.xml  { head :ok }
       else
-        puts "\nSHIT!!\n"
         format.html { render :action => "edit" }
         format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
       end

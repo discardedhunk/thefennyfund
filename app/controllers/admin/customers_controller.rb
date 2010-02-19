@@ -75,8 +75,6 @@ class Admin::CustomersController < ApplicationController
   # GET /customers/login.xml
   def login
 
-    puts "\nIN CUST LOGIN\n"
-
     if request.get?
       flash[:notice] = nil
     elsif request.post?

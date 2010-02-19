@@ -7,14 +7,13 @@ class StoreController < ApplicationController
   before_filter :require_ssl, :find_cart, :except => :empty_cart
 
   def index()
-    @current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-    @products = Product.find_products_for_sale
     @sounds = []
-    @display_count = nil
-    @count = increment_count
-    if @count > 5
-      @display_count = @count
+    @category = nil
+    if params[:category]
+      @category = params[:category]
     end
+
+    @products = Product.find_groups_by_category(@category)
     
     respond_to do |format|
       format.html
@@ -23,29 +22,23 @@ class StoreController < ApplicationController
   end
   
   def add_to_cart()
-    product = Product.find(params[:id])
+    if params[:group]
+      group = params[:group]
+      @current_item = @cart.add_product_group(group)
+    else
+      product = Product.find(params[:id])
+      @count = reset_count
+      @current_item = @cart.add_product(product)
+    end
     
-    @count = reset_count
-    @current_item = @cart.add_product(product)
-      respond_to do |format|
-        format.js if request.xhr?
-        format.html {redirect_to_index}
-      end
-    rescue ActiveRecord::RecordNotFound 
-      logger.error("Attempt to access invalid product #{params[:id]}") 
-      redirect_to_index("Invalid product") 
-  end
-
-  def add_all_to_cart()
-    grouping = params[:grouping]
-    puts "\nGROUPING= #{grouping}\n"
-    products = Product.find_all_by_grouping(grouping)
-    @current_items = @cart.add_products(products)
-    logger.debug "\nCURRENT_ITEMS= #{@current_items}"
-      respond_to do |format|
-        format.js if request.xhr?
-        format.html {redirect_to_index}
-      end
+    respond_to do |format|
+      format.js if request.xhr?
+      format.html {redirect_to_index}
+    end
+    
+    rescue ActiveRecord::RecordNotFound
+      logger.error("Attempt to access invalid product #{params[:id]}")
+      redirect_to_index("Invalid product")
   end
   
   def empty_cart()
@@ -79,7 +72,6 @@ class StoreController < ApplicationController
     unless Customer.find_by_id(session[:customer_id])
       session[:original_uri] = request.request_uri
       flash[:notice] = "Please log in"
-      puts "\nREDIRECTING TO CUST LOGIN\n"
       redirect_to :controller => 'customers', :action => 'login'
     end
     
@@ -121,7 +113,6 @@ class StoreController < ApplicationController
     else
       session[:original_uri] = request.request_uri
       flash[:notice] = "Please log in"
-      puts "\nREDIRECTING TO CUST LOGIN\n"
       redirect_to :controller => 'customers', :action => 'login'
     end
 
@@ -161,6 +152,7 @@ class StoreController < ApplicationController
     
     def save_order(opts={})
       @order = Order.new(params[:order])
+      @order.total = @cart.total_price
       @order.customer_id = session[:customer_id]
       logger.debug "\nOPTS= #{opts}"
       if opts[:pp_tx_id]

@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   layout "store"
-  before_filter :require_ssl, :authorize, :except => [:login]
+  before_filter :find_categories, :require_ssl, :authorize, :except => [:login]
   #before_filter :record_prev_uri
   after_filter :record_prev_uri
   helper :all # include all helpers, all the time
@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+
+  
 
   protected
     def authorize
@@ -43,6 +45,10 @@ class ApplicationController < ActionController::Base
 
     def require_ssl
       redirect_to :protocol => "https://" unless (request.ssl? or local_request?)
+    end
+
+    def find_categories
+      @categories = Category.find(:all)
     end
     
 end

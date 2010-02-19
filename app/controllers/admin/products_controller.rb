@@ -40,9 +40,13 @@ class Admin::ProductsController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
-    if params[:product][:category] == "music"
-      params[:product][:music_sample] = params[:product][:music]
+    if params[:product][:category_id] != ""
+      category = Category.find(params[:product][:category_id])
+      if category.name == "music"
+        params[:product][:music_sample] = params[:product][:music]
+      end
     end
+
     @product = Product.new(params[:product])
     
     respond_to do |format|
@@ -60,7 +64,8 @@ class Admin::ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
-    if params[:product][:category] == "music"
+    category = Category.find(params[:product][:category_id])
+    if category.name == "music"
       params[:product][:music_sample] = params[:product][:music]
     end
     params[:product][:existing_band_link_attributes] ||= {}

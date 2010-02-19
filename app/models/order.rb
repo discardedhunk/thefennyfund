@@ -27,8 +27,19 @@ class Order < ActiveRecord::Base
 
   def add_line_items_from_cart(cart)
     cart.items.each do |item|
-      li = LineItem.from_cart_item(item)
-      line_items << li
+      if item.group
+        group = Group.find_by_name(item.group)
+        products = Product.find_all_by_group_id(group.id)
+        for product in products
+          citem = CartItem.new(product)
+          citem.quantity = item.quantity
+          li = LineItem.from_cart_item(citem)
+          line_items << li
+        end
+      else
+        li = LineItem.from_cart_item(item)
+        line_items << li
+      end
     end
   end
 

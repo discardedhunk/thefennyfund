@@ -8,6 +8,9 @@
 			</td>
 			<td class="list-description">
 				<dl>
+          <% if product.category != nil && product.category.name == "music" %>
+            <dt><%=h product.band_name %></dt>
+          <% end %>
 					<dt><%=h product.title %></dt>
 					<dd><%=h truncate(product.description.gsub(/<.*?>/,''),
 							:length => 80) %></dd>

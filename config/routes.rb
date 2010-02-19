@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users
     admin.resources :orders
     admin.resources :customers
+    admin.resources :categories
+    admin.resources :groups
   end
 
   map.root :controller => "store", :path_prefix => '/store/', :action => "index"

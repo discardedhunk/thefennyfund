@@ -5,12 +5,12 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%= f.label :category_id %><br />
+    <%= collection_select(:product, :category_id, Category.all, :id, :name, options ={:prompt => "-Select a Category"}) %>
   </p>
-  <p>
-    <%= f.label :grouping %><br />
-    <%= f.text_field :grouping %>
+   <p>
+    <%= f.label :group_id %><br />
+    <%= collection_select(:product, :group_id, Group.all, :id, :name, options ={:prompt => "-Select a Group"}) %>
   </p>
   <p>
     <%= f.label :band_name %><br/>

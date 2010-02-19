@@ -5,7 +5,7 @@
     </p>
   </div>
   <div class="desc_links">
-  <% if product.category == "music" && product.band_links != nil %>
+  <% if product.band_links != nil %>
       Links:
           <% product.band_links.each do |link| %>
             <% if link.name != "" && link.url != "" %>

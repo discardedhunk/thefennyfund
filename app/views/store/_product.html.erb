@@ -8,14 +8,14 @@
     <% end %>
   </div>
   <div class="nametitle">
-    <% if product.category == "music" %>
+    <% if product.category.name == "music" %>
       <h3><%= product.band_name %></h3>
     <% end %>
     <%= product.title %><br/>
     <a href="#prod_desc_<%= product.id %>" rel="facebox">More Info</a>
   </div>
   <div class="rightcol">
-    <% if product.category == "music" && product.music_file_name != nil %>
+    <% if product.category.name == "music" && product.music_file_name != nil %>
       <% if product.music_sample.url != nil %>
         <% @sounds.push([product.id, product.music_sample.url]) %>
         <div class="sample">Sample: <%= toggle_sound product.id %></div>

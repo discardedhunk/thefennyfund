@@ -3,17 +3,25 @@ When the idea for the Fenny Fund CD began it was to focus on local artists, New 
 Enjoy.
 
 <div class="prod_table">
-<% @products.group_by(&:grouping).each do |grouping, products| %>
+<% @products.each do | group, prods | %>
   <div class="group_row">
     <div class="group_cell">
-      <div id="<%= grouping.gsub(" ", "") %>">
-        <h3><%= grouping -%></h3><% form_remote_tag :url => { :action => 'add_all_to_cart',:grouping => grouping } do %>
-              <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
-            <% end %>
+      <% if group.name != "zzz-no-group" %>
+      <div id="<%= group.name.gsub(" ", "") %>">
+        <h3><%= group.name %></h3>
+        <% if group.discount > 0.00 %>
+        <b>Discount: <%= number_to_percentage(group.discount * 100, :precision => 0) %></b>
+        <% end %>
+        <% form_remote_tag :url => { :action => 'add_to_cart',:group => group.name } do %>
+          <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
+        <% end %>
       </div>
+      <% else %>
+        <br/><br/>
+      <% end %>
     </div>
   </div>
-    <% for product in products %>
+    <% for product in prods %>
            <div class="entry_cell"><%= render :partial => 'product', :object => product %></div>
     <% end %>
 <% end %>

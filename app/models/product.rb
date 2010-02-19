@@ -25,6 +25,8 @@ class Product < ActiveRecord::Base
   has_many :orders, :through => :line_items
   has_many :line_items
   has_many :band_links
+  belongs_to  :group
+  belongs_to  :category
 
   has_attached_file :photo,
                     :storage => :s3,
@@ -63,6 +65,12 @@ class Product < ActiveRecord::Base
 
   validates_associated :band_links
 
+  validates_inclusion_of :group_id, :in =>
+    Group.find(:all).map { |group| group.id }
+
+  validates_inclusion_of :category_id, :in =>
+    Category.find(:all).map { |category| category.id }
+
   after_update :save_band_links
 
   def existing_band_link_attributes=(band_link_attributes)
@@ -77,7 +85,34 @@ class Product < ActiveRecord::Base
   end
 
   def self.find_products_for_sale
-    find(:all, :order => "grouping, band_name, title")
+    products = find(:all, :order => "band_name, title")
+    sort_by_group_name(products)
+  end
+
+  def self.find_groups_by_category(category_name)
+    if category_name != nil
+      category = Category.find_by_name(category_name)
+      products = Product.find_all_by_category_id(category.id)
+    else
+      products = Product.find(:all)
+    end
+
+    products.sort! do | p1, p2 |
+      p1.category.name <=> p2.category.name
+      p1.group.name <=> p2.group.name
+    end
+
+    grouped_by = products.group_by { |product| product.group }
+
+    grouped_by = grouped_by.each do |group, prods|
+      prods.sort! do |p1,p2|
+        p1.band_name <=> p2.band_name
+        p1.title <=> p2.title
+      end
+    end
+    
+    grouped_by
+
   end
 
   def new_band_link_attributes=(band_link_attributes)

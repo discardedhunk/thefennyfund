@@ -1,4 +1,4 @@
-bundle_path 'vendor/bundler_gems'
+source :gemcutter
 
 gem 'rails', '2.2.2'
 

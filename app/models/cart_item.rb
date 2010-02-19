@@ -14,6 +14,10 @@ class CartItem
      @quantity -= 1 if @quantity > 0
   end
 
+  def quantity=(val)
+    @quantity = val
+  end
+
   def title 
     @product.title
   end
@@ -24,6 +28,14 @@ class CartItem
   
   def id
     @product.id
+  end
+
+  def group=(val)
+    @group = val
+  end
+
+  def group
+    @group
   end
   
 end
