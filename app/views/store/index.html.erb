@@ -10,7 +10,7 @@ Enjoy.
       <div id="<%= group.name.gsub(" ", "") %>">
         <h3><%= group.name %></h3>
         <% if group.discount > 0.00 %>
-        <b>Discount: <%= number_to_percentage(group.discount * 100, :precision => 0) %></b>
+        <b>Discount: <%= number_to_percentage(group.discount * 100, :precision => 1) %></b>
         <% end %>
         <% form_remote_tag :url => { :action => 'add_to_cart',:group => group.name } do %>
           <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
