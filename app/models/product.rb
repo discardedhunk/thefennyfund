@@ -65,11 +65,11 @@ class Product < ActiveRecord::Base
 
   validates_associated :band_links
 
-  validates_inclusion_of :group_id, :in =>
-    Group.find(:all).map { |group| group.id }
+  #validates_inclusion_of :group_id, :in =>
+   # Group.find(:all).map { |group| group.id }
 
-  validates_inclusion_of :category_id, :in =>
-    Category.find(:all).map { |category| category.id }
+  #validates_inclusion_of :category_id, :in =>
+    #Category.find(:all).map { |category| category.id }
 
   after_update :save_band_links
 
