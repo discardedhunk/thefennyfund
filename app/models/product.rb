@@ -104,8 +104,8 @@ class Product < ActiveRecord::Base
 
     grouped_by = grouped_by.each do |group, prods|
       prods.sort! do |p1,p2|
-        p1.band_name <=> p2.band_name
         p1.title <=> p2.title
+        p1.band_name <=> p2.band_name
       end
     end
     
