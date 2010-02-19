@@ -38,8 +38,9 @@
       <%= link_to 'Register', new_customer_url %><br />
 			<%= link_to 'Customer Login',	login_url %><br />
       <br/>
-      Product Categories:
+
       <% if @categories != nil %>
+      Product Categories:<br/>
         <% for category in @categories %>
           <%= link_to category.name.titleize, root_url(:category => category.name) %><br/>
         <% end %>
