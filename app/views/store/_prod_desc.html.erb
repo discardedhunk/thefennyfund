@@ -1,7 +1,7 @@
 <div id="prod_desc_<%= product.id %>" class="facebox" style="display:none">
   <div class="desc_text">
     <p>
-      &quot;<%= product.description.gsub(/[^[:print:]]/,'') %>&quot;
+      &quot;<%= product.description.gsub(/\r\n/,'<br/>').gsub(/[^[:print:]]/,'') %>&quot;
     </p>
   </div>
   <div class="desc_links">
