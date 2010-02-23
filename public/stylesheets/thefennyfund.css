@@ -97,8 +97,7 @@ h3 {
 
 .group_row {
     left: 0;
-    margin-top: 20px;
-    border-top: 1px dotted #77d;
+    margin-bottom: 20px;
 }
 
 .group_cell {

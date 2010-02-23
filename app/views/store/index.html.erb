@@ -5,22 +5,22 @@
   <h2><%= category.name.titleize %></h2>
   <%= category.description %>
   <% groups.each do |group, prods| %>
-  <div class="group_row">
-    <div class="group_cell">
-      <% if group.name != "zzz-no-group" %>
-        <div id="<%= group.name.gsub(" ", "") %>">
-          <h3><%= group.name %></h3>
-          <b><%= group.discount_desc if group.discount > 0.00 %></b>
-          <% form_remote_tag :url => { :action => 'add_to_cart',:group => group.name } do %>
-            <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
-          <% end %>
-        </div>
+    <div class="group_row">
+      <div class="group_cell">
+        <% if group.name != "zzz-no-group" %>
+          <div id="<%= group.name.gsub(" ", "") %>">
+            <h3><%= group.name %></h3>
+            <b><%= group.discount_desc if group.discount > 0.00 %></b>
+            <% form_remote_tag :url => { :action => 'add_to_cart',:group => group.name } do %>
+              <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <% for product in prods %>
+             <div class="entry_cell"><%= render :partial => 'product', :object => product %></div>
       <% end %>
     </div>
-  </div>
-    <% for product in prods %>
-           <div class="entry_cell"><%= render :partial => 'product', :object => product %></div>
-    <% end %>
   <% end %>
 <% end %>
 </div> <!-- END PROD_TABLE -->
