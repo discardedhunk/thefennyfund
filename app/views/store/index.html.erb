@@ -8,15 +8,13 @@
   <div class="group_row">
     <div class="group_cell">
       <% if group.name != "zzz-no-group" %>
-      <div id="<%= group.name.gsub(" ", "") %>">
-        <h3><%= group.name %></h3>
-        <b><%= group.discount_desc if group.discount > 0.00 %></b>
-        <% form_remote_tag :url => { :action => 'add_to_cart',:group => group.name } do %>
-          <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
-        <% end %>
-      </div>
-      <% else %>
-        <br/><br/>
+        <div id="<%= group.name.gsub(" ", "") %>">
+          <h3><%= group.name %></h3>
+          <b><%= group.discount_desc if group.discount > 0.00 %></b>
+          <% form_remote_tag :url => { :action => 'add_to_cart',:group => group.name } do %>
+            <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

@@ -96,7 +96,6 @@ class Product < ActiveRecord::Base
     end
     
     prod_map.sort do  |a,b|
-      puts "\na= #{a}\n"
       a[0].name <=> b[0].name
     end
   end
@@ -106,7 +105,6 @@ class Product < ActiveRecord::Base
     products = Product.find_all_by_category_id(category.id)
 
     products.sort! do | p1, p2 |
-      #p1.category.name <=> p2.category.name
       p1.group.name <=> p2.group.name
     end
 
