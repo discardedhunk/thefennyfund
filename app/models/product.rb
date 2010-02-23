@@ -82,31 +82,43 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def self.find_products_for_sale
-    products = find(:all, :order => "band_name, title")
-    sort_by_group_name(products)
-  end
-
-  def self.find_groups_by_category(category_name)
+  def self.find_products_for_sale(category_name)
+    prod_map = {}
     if category_name != nil
       category = Category.find_by_name(category_name)
-      products = Product.find_all_by_category_id(category.id)
+      prod_map[category] = Product.find_groups_by_category(category)
     else
-      products = Product.find(:all)
+      categories = Category.find(:all)
+      categories.sort! { |c1,c2| c1.name <=> c2.name }
+      categories.each do | cat |
+        prod_map[cat] = Product.find_groups_by_category(cat)
+      end
     end
+    
+    prod_map.sort do  |a,b|
+      puts "\na= #{a}\n"
+      a[0].name <=> b[0].name
+    end
+  end
+
+  def self.find_groups_by_category(category)
+
+    products = Product.find_all_by_category_id(category.id)
 
     products.sort! do | p1, p2 |
-      p1.category.name <=> p2.category.name
+      #p1.category.name <=> p2.category.name
       p1.group.name <=> p2.group.name
     end
 
     grouped_by = products.group_by { |product| product.group }
 
     grouped_by = grouped_by.each do |group, prods|
-      prods.sort! do |p1,p2|
-        p1.title <=> p2.title
-        p1.band_name <=> p2.band_name
+      if category.name == "music"
+        prods.sort! { |p1, p2| p1.band_name <=> p2.band_name }
+      else
+        prods.sort! { |p1, p2| p1.title <=> p2.title }
       end
+
     end
     
     grouped_by

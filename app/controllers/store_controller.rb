@@ -6,6 +6,10 @@ class StoreController < ApplicationController
   
   before_filter :require_ssl, :find_cart, :except => :empty_cart
 
+  def initialize
+    @categories = Category.find(:all)
+  end
+
   def index()
     @sounds = []
     @category = nil
@@ -13,7 +17,7 @@ class StoreController < ApplicationController
       @category = params[:category]
     end
 
-    @products = Product.find_groups_by_category(@category)
+    @products = Product.find_products_for_sale(@category)
     
     respond_to do |format|
       format.html

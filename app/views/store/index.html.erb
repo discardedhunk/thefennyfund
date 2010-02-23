@@ -1,17 +1,16 @@
 <h1>The Fenny Fund Catalog</h1>
-When the idea for the Fenny Fund CD began it was to focus on local artists, New York and maybe even New Jersey. Turns out musicians are a big hearted lot and pretty soon songs were coming in from Boston, Phoenix, Toronto and Nashville. The Fenny Fund thanks these generous souls for their song donations and is in awe of their musical talent.
-Enjoy.
 
 <div class="prod_table">
-<% @products.each do | group, prods | %>
+<% @products.each do | category, groups | %>
+  <h2><%= category.name.titleize %></h2>
+  <%= category.description %>
+  <% groups.each do |group, prods| %>
   <div class="group_row">
     <div class="group_cell">
       <% if group.name != "zzz-no-group" %>
       <div id="<%= group.name.gsub(" ", "") %>">
         <h3><%= group.name %></h3>
-        <% if group.discount > 0.00 %>
-        <b>Discount: <%= number_to_percentage(group.discount * 100, :precision => 1) %></b>
-        <% end %>
+        <b><%= group.discount_desc if group.discount > 0.00 %></b>
         <% form_remote_tag :url => { :action => 'add_to_cart',:group => group.name } do %>
           <%= submit_tag "Click to buy all!", :disable_with => "Added", :class => "buy-all" %>
         <% end %>
@@ -24,6 +23,7 @@ Enjoy.
     <% for product in prods %>
            <div class="entry_cell"><%= render :partial => 'product', :object => product %></div>
     <% end %>
+  <% end %>
 <% end %>
 </div> <!-- END PROD_TABLE -->
 <%= initialize_sounds(@sounds) %>
