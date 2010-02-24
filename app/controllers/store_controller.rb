@@ -25,6 +25,16 @@ class StoreController < ApplicationController
       format.xml { render :xml => @products.to_xml() }
     end
   end
+
+  def show
+
+    @product = Product.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @products.to_xml() }
+    end
+  end
   
   def add_to_cart()
     if params[:group]
