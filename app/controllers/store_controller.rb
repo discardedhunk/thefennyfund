@@ -27,7 +27,7 @@ class StoreController < ApplicationController
   end
 
   def show
-
+    @sounds = []
     @product = Product.find(params[:id])
 
     respond_to do |format|

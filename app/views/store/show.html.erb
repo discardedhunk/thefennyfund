@@ -11,7 +11,10 @@
   </p>
 <% end %>
   <%= @product.title %>
-
+<% if @product.music_sample.url != nil %>
+        <% @sounds.push([@product.id, @product.music_sample.url]) %>
+        <div class="sample">Sample: <%= toggle_sound @product.id %></div>
+      <% end %>
 
 
 <p>
@@ -38,5 +41,5 @@
     </span>
   
 </p>
-
+<%= initialize_sounds(@sounds) %>
 <%= link_to 'Back', session[:return_to] %>
