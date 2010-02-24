@@ -1,8 +1,8 @@
 <p>
   <%= image_tag(@product.photo.url,
             :alt => @product.title,
-            :title => "More Info")
-             %>
+            :title => "More Info",
+            :class => "show_img") %>
 </p>
 
 
@@ -32,7 +32,7 @@
   
     <b>Price:</b>
     <span class="price"><%= number_to_currency(@product.price) %>
-    <% form_remote_tag :url => { :action => 'add_to_cart',
+    <% form_remote_tag :url => { :controller => 'store', :action => 'add_to_cart',
                    :id => @product } do %>
       <%= submit_tag "Add to Cart", :disable_with => "Added" %>
     <% end %>
