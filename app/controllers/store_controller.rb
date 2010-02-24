@@ -11,6 +11,7 @@ class StoreController < ApplicationController
   end
 
   def index()
+    session[:return_to] = request.request_uri
     @sounds = []
     @category = nil
     if params[:category]

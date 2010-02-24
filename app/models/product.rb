@@ -100,7 +100,26 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def self.find_groups_by_category(category)
+  def new_band_link_attributes=(band_link_attributes)
+    band_link_attributes.each do |attributes|
+      band_links.build(attributes)
+    end
+  end
+
+  def save_band_links
+    band_links.each do |band_link|
+      band_link.save(false)
+    end
+  end
+  
+  protected
+    def price_must_be_at_least_a_cent
+      errors.add(:price, 'should be at least 0.01') if price.nil? || price < 0.01
+    end
+
+  private
+
+    def self.find_groups_by_category(category)
 
     products = Product.find_all_by_category_id(category.id)
 
@@ -118,26 +137,9 @@ class Product < ActiveRecord::Base
       end
 
     end
-    
+
     grouped_by
 
   end
-
-  def new_band_link_attributes=(band_link_attributes)
-    band_link_attributes.each do |attributes|
-      band_links.build(attributes)
-    end
-  end
-
-  def save_band_links
-    band_links.each do |band_link|
-      band_link.save(false)
-    end
-  end
-  
-  protected
-    def price_must_be_at_least_a_cent
-      errors.add(:price, 'should be at least 0.01') if price.nil? || price < 0.01
-    end
     
 end

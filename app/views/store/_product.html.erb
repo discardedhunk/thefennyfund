@@ -1,9 +1,9 @@
 <div class="entry">
   <div class="leftcol">
-    <% form_remote_tag :url => { :action => :add_to_cart, :id => product } do %>
-        <%= image_submit_tag(product.photo.url,
+    <% link_to product_path(product) do %>
+        <%= image_tag(product.photo.url,
                   :alt => product.title,
-                  :title => "Add to cart",
+                  :title => "More Info",
                                     :class => "img") %>
     <% end %>
   </div>

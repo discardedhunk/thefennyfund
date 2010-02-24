@@ -1,21 +1,43 @@
 <p>
-  <b>Title:</b>
-  <%=h @product.title %>
+  <%= image_tag(@product.photo.url,
+            :alt => @product.title,
+            :title => "More Info")
+             %>
 </p>
+
+
+<% if @product.category.name == "music" %>
+  <p>
+  <h3><%= @product.band_name %></h3>
+  </p>
+<% end %>
+  <%= @product.title %>
+
+
 
 <p>
-  <b>Description:</b>
-  <%= @product.description %>
+  <%= @product.description.gsub(/\r\n/,'<br/>').gsub(/[^[:print:]]/,'') %>
 </p>
+
+<% if @product.band_links[0].name != "" %>
+  Links:
+      <% @product.band_links.each do |link| %>
+        <% if link.name != "" && link.url != "" %>
+          <%= link_to link.name, link.url, :popup => true %>&nbsp;
+        <% end %>
+      <% end %>
+  <% end %>
 
 <p>
-  <b>Category:</b>
-  <%=h @product.category.name %>
+  
+    <b>Price:</b>
+    <span class="price"><%= number_to_currency(@product.price) %>
+    <% form_remote_tag :url => { :action => 'add_to_cart',
+                   :id => @product } do %>
+      <%= submit_tag "Add to Cart", :disable_with => "Added" %>
+    <% end %>
+    </span>
+  
 </p>
 
-<p>
-  <b>Price:</b>
-  <%=h @product.price %>
-</p>
-
-<%= link_to 'Back', (session[:prev_uri] || products_path )%>
+<%= link_to 'Back', session[:return_to] %>
