@@ -35,7 +35,7 @@
       <tbody>
         <% @order.line_items.each do |line_item| %>
         <tr>
-          <td><%= link_to line_item.product.title, product_url(line_item.product_id) %></td>
+          <td><%= link_to line_item.product.title, :controller => 'store', :action => 'show', :id => line_item.product.id %></td>
           <td><%=h line_item.quantity %></td>
           <td><%=h line_item.total_price %></td>
           <% if line_item.product.category.name == 'music' %>
