@@ -8,3 +8,8 @@ gem 'aws-s3', '0.6.2'
 gem 'pg', '0.8.0'
 
 gem 'thin'
+
+group :production do
+  gem 'pg'
+  gem 'thin'
+end

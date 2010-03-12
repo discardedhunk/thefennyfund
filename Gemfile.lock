@@ -1,13 +1,17 @@
 --- 
 dependencies: 
-  pg: 
-    group: 
-    - :default
-    version: = 0.8.0
   rails: 
     group: 
     - :default
     version: = 2.2.2
+  pg: 
+    group: 
+    - :production
+    version: ">= 0"
+  thin: 
+    group: 
+    - :production
+    version: ">= 0"
   aws-s3: 
     group: 
     - :default
@@ -19,10 +23,18 @@ specs:
     version: 2.2.2
 - builder: 
     version: 2.1.2
+- daemons: 
+    version: 1.0.10
 - actionpack: 
     version: 2.2.2
 - actionmailer: 
     version: 2.2.2
+- eventmachine: 
+    version: 0.12.10
+- thin: 
+    version: 1.2.7
+- rack: 
+    version: 1.1.0
 - mime-types: 
     version: "1.16"
 - aws-s3: 
@@ -37,7 +49,7 @@ specs:
     version: 2.2.2
 - rails: 
     version: 2.2.2
-hash: 07a7a7638efe4ec322c736f85631f2d862837e91
+hash: 751b76b7b1cafacd5440f3317115143bb087a67d
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

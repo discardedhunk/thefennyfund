@@ -131,14 +131,18 @@ end
 
 module Bundler
   LOCKED_BY    = '0.9.7'
-  FINGERPRINT  = "07a7a7638efe4ec322c736f85631f2d862837e91"
-  AUTOREQUIRES = {:default=>[["aws-s3", false], ["pg", false], ["rails", false]]}
+  FINGERPRINT  = "751b76b7b1cafacd5440f3317115143bb087a67d"
+  AUTOREQUIRES = {:default=>[["thin", false], ["aws-s3", false], ["pg", false], ["rails", false]]}
   SPECS        = [
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/xml-simple-1.0.12/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/xml-simple-1.0.12.gemspec"},
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/activesupport-2.2.2.gemspec"},
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/builder-2.1.2/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/builder-2.1.2.gemspec"},
+        {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/daemons-1.0.10/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/daemons-1.0.10.gemspec"},
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/actionpack-2.2.2.gemspec"},
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/actionmailer-2.2.2/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/actionmailer-2.2.2.gemspec"},
+        {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/eventmachine-0.12.10/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/eventmachine-0.12.10.gemspec"},
+        {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/thin-1.2.7/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/thin-1.2.7.gemspec"},
+        {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/rack-1.1.0/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/rack-1.1.0.gemspec"},
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/mime-types-1.16/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/mime-types-1.16.gemspec"},
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/aws-s3-0.6.2/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/aws-s3-0.6.2.gemspec"},
         {:load_paths=>["/opt/local/lib/ruby/gems/1.8/gems/rake-0.8.7/lib"], :loaded_from=>"/opt/local/lib/ruby/gems/1.8/specifications/rake-0.8.7.gemspec"},
