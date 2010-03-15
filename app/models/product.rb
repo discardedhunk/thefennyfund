@@ -86,12 +86,18 @@ class Product < ActiveRecord::Base
     prod_map = {}
     if category_name != nil
       category = Category.find_by_name(category_name)
-      prod_map[category] = Product.find_groups_by_category(category)
+      result = Product.find_groups_by_category(category)
+      if result != nil
+        prod_map[category] = result
+      end
     else
       categories = Category.find(:all)
       categories.sort! { |c1,c2| c1.name <=> c2.name }
       categories.each do | cat |
-        prod_map[cat] = Product.find_groups_by_category(cat)
+        result = Product.find_groups_by_category(cat)
+        if result != nil
+          prod_map[cat] = result
+        end
       end
     end
     
@@ -122,6 +128,10 @@ class Product < ActiveRecord::Base
     def self.find_groups_by_category(category)
 
     products = Product.find_all_by_category_id(category.id)
+
+    if products.nitems < 1
+      return nil
+    end
 
     products.sort! do | p1, p2 |
       p1.group.name <=> p2.group.name
