@@ -1,2 +1,5 @@
 vendor/bundler_gems
 log/
+/db/*.sqlite3
+/tmp
+/.bundle
